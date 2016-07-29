@@ -237,10 +237,6 @@ return comboarray
 end
 
 
-x = readerlistedplaces("times.txt")
-binding.pry
-
-
 
 
 

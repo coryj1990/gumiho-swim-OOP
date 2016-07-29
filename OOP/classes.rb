@@ -4,6 +4,88 @@ require "httparty"
 
 class Entryformobject
 
+	def setparams()
+
+		@name = params['Name']
+		@college = params['College']
+		@address = params['Address']
+
+		@stuffs1650F = params['1650F']
+		@stuffs200FR = params['200FR']
+		@stuffs100BA = params['100BA']
+		@stuffs100BR = params['100BR']
+		@stuffs200BU = params['200BU']
+		@stuffs50FRE = params['50FRE']
+		@stuffs100FR = params['100FR']
+		@stuffs200BA = params['200BA']
+		@stuffs200BR = params['200BR']
+		@stuffs500FR = params['500FR']
+		@stuffs100BU = params['100BU']
+		@stuffs400IM = params['400IM']
+
+	end
+
+	def getname()
+		return @name
+	end
+
+	def getcollege()
+		return @college
+	end
+
+	def getaddr()
+		return @address
+	end
+
+	def get1650F()
+		return @stuffs1650F
+	end
+
+	def get200FR()
+		return @stuffs200FR
+	end
+
+	def get100BA()
+		return @stuffs100BA
+	end
+
+	def get100BR()
+		return @stuffs100BR
+	end
+
+	def get200BU()
+		return @stuffs200BU
+	end
+
+	def get50FRE()
+		return @stuffs50FRE
+	end
+
+	def get100FR()
+		return @stuffs100FR
+	end
+
+	def get200BA()
+		return @stuffs200BA
+	end
+
+	def get200BR()
+		return @stuffs200BR
+	end
+
+	def get500FR()
+		return @stuffs500FR
+	end
+
+	def get100BU()
+		return @stuffs100BU
+	end
+
+	def get400IM()
+		return @stuffs400IM
+	end
+
+
 	def readerIDs(thefilename)
 		goodies = File.open(thefilename, "a")
 		goodies.close
@@ -18,7 +100,7 @@ class Entryformobject
 	end
 
 	def idGeneration
-  		previousCompetitorId = readerIDs("entrantsOOP.txt").length
+  		previousCompetitorId = readerIDs("entrants.txt").length
 
 		#need to set competitorID to retrieve previous from storage (if it exists)
 		competitorID = previousCompetitorId + 1
@@ -46,97 +128,98 @@ class Entryformobject
 	  return newstring
 	end
 
-	def setevent(stuffs1650F, stuffs200FR, stuffs100BA, stuffs100BR, stuffs200BU, stuffs50FRE, stuffs100FR, stuffs200BA, stuffs200BR, stuffs500FR, stuffs100BU, stuffs400IM)
-	  # created a blank string for the if logics
-	  @eventstring = ""
 
-	  # if eventstring is empty (length 0) then event string is saved as the event 
-	  # title. If eventstring does have an event title in it already, it will join 
-	  # the two strings together.
-	  if stuffs1650F == "on"
-	    if @eventstring.empty? == true
-	      @eventstring = newstring("1650 Freestyle")
-	    else
-	      @eventstring = joinstrings(@eventstring, "1650 Freestyle")
+	def setevent(stuffs1650F, stuffs200FR, stuffs100BA, stuffs100BR, stuffs200BU, stuffs50FRE, stuffs100FR, stuffs200BA, stuffs200BR, stuffs500FR, stuffs100BU, stuffs400IM)
+	    # created a blank string for the if logics
+	    @eventstring = ""
+
+	    # if eventstring is empty (length 0) then event string is saved as the event 
+	    # title. If eventstring does have an event title in it already, it will join 
+	    # the two strings together.
+	    if stuffs1650F == "on"
+	 	   if @eventstring.empty? == true
+		        @eventstring = newstring("1650 Freestyle")
+	        else
+	        	@eventstring = joinstrings(@eventstring, "1650 Freestyle")
+	    	end
 	    end
-	  end
-	  if stuffs200FR == "on"
-	    if @eventstring.empty? == true
-	      @eventstring = newstring("200 Freestyle")
-	    else
-	      @eventstring = joinstrings(@eventstring, "200 Freestyle")
-	    end
-	  end
-	  if stuffs100BA == "on"
-	    if @eventstring.empty? == true
-	      @eventstring = newstring("100 Backstroke")
-	    else
-	      @eventstring = joinstrings(@eventstring, "100 Backstroke")
-	    end
-	  end
-	  if stuffs100BR == "on"
-	    if @eventstring.empty? == true
-	      @eventstring = newstring("100 Breaststroke")
-	    else
-	      @eventstring = joinstrings(@eventstring, "100 Breaststroke")
-	    end
-	  end
-	  if stuffs200BU == "on"
-	    if @eventstring.empty? == true
-	      @eventstring = newstring("200 Butterfly")
-	    else
-	      @eventstring = joinstrings(@eventstring, "200 Butterfly")
-	    end
-	  end
-	  if stuffs50FRE == "on"
-	    if @eventstring.empty? == true
-	      @eventstring = newstring("50 Freestyle")
-	    else
-	      @eventstring = joinstrings(@eventstring, "50 Freestyle")
-	    end
-	  end
-	  if stuffs100FR == "on"
-	    if @eventstring.empty? == true
-	      @eventstring = newstring("100 Freestyle")
-	    else
-	      @eventstring = joinstrings(@eventstring, "100 Freestyle")
-	    end
-	  end
-	  if stuffs200BA == "on"
-	    if @eventstring.empty? == true
-	      @eventstring = newstring("200 Backstroke")
-	    else
-	      @eventstring = joinstrings(@eventstring, "200 Backstroke")
-	    end
-	  end
-	  if stuffs200BR == "on"
-	    if @eventstring.empty? == true
-	      @eventstring = newstring("200 Breaststroke")
-	    else
-	      @eventstring = joinstrings(@eventstring, "200 Breaststroke")
-	    end
-	  end
-	  if stuffs500FR == "on"
-	    if @eventstring.empty? == true
-	      @eventstring = newstring("500 Freestyle")
-	    else
-	      @eventstring = joinstrings(@eventstring, "500 Freestyle")
-	    end
-	  end
-	  if stuffs100BU == "on"
-	    if @eventstring.empty? == true
-	      @eventstring = newstring("100 Butterfly")
-	    else
-	      @eventstring = joinstrings(@eventstring, "100 Butterfly")
-	    end
-	  end
-	  if stuffs400IM == "on"
-	    if @eventstring.empty? == true
-	      @eventstring = newstring("400 Individual Medley")
-	    else
-	      @eventstring = joinstrings(@eventstring, "400 Individual Medley")
-	    end
-	  end
+	    if stuffs200FR == "on"
+	    	if @eventstring.empty? == true
+	      		@eventstring = newstring("200 Freestyle")
+	    	else
+	      		@eventstring = joinstrings(@eventstring, "200 Freestyle")
+	    	end
+	  	end
+	  	if stuffs100BA == "on"
+	    	if @eventstring.empty? == true
+	      		@eventstring = newstring("100 Backstroke")
+	    	else
+	      		@eventstring = joinstrings(@eventstring, "100 Backstroke")
+	    	end
+	  	end
+	  	if stuffs100BR == "on"
+	    	if @eventstring.empty? == true
+	      		@eventstring = newstring("100 Breaststroke")
+	    	else
+	      		@eventstring = joinstrings(@eventstring, "100 Breaststroke")
+	    	end
+	  	end
+	  	if stuffs200BU == "on"
+	    	if @eventstring.empty? == true
+	      		@eventstring = newstring("200 Butterfly")
+	    	else
+	      		@eventstring = joinstrings(@eventstring, "200 Butterfly")
+	    	end
+	  	end
+	  	if stuffs50FRE == "on"
+	    	if @eventstring.empty? == true
+	      		@eventstring = newstring("50 Freestyle")
+	    	else
+	      		@eventstring = joinstrings(@eventstring, "50 Freestyle")
+	    	end
+	  	end
+	  	if stuffs100FR == "on"
+	    	if @eventstring.empty? == true
+	      		@eventstring = newstring("100 Freestyle")
+	    	else
+	      		@eventstring = joinstrings(@eventstring, "100 Freestyle")
+	    	end
+	  	end
+	  	if stuffs200BA == "on"
+	    	if @eventstring.empty? == true
+	      		@eventstring = newstring("200 Backstroke")
+	    	else
+	      		@eventstring = joinstrings(@eventstring, "200 Backstroke")
+	    	end
+	  	end
+	  	if stuffs200BR == "on"
+	    	if @eventstring.empty? == true
+	      		@eventstring = newstring("200 Breaststroke")
+	    	else
+	      		@eventstring = joinstrings(@eventstring, "200 Breaststroke")
+	    	end
+	  	end
+	  	if stuffs500FR == "on"
+	    	if @eventstring.empty? == true
+	      		@eventstring = newstring("500 Freestyle")
+	    	else
+	      		@eventstring = joinstrings(@eventstring, "500 Freestyle")
+	    	end
+	  	end
+	  	if stuffs100BU == "on"
+	    	if @eventstring.empty? == true
+	      		@eventstring = newstring("100 Butterfly")
+	    	else
+	      		@eventstring = joinstrings(@eventstring, "100 Butterfly")
+	    	end
+	  	end
+	  	if stuffs400IM == "on"
+	    	if @eventstring.empty? == true
+	      		@eventstring = newstring("400 Individual Medley")
+	    	else
+	      		@eventstring = joinstrings(@eventstring, "400 Individual Medley")
+	    	end
+	  	end
 	end
 
 	def getevent()
@@ -150,7 +233,7 @@ class Entryformobject
 # entrants.txt. they are written into the flatstorage as 4 lines
 # as ID, athlete name, events signed up for, and college.
 	def writetoentrants(uID, athlete, event, college, address)
-	  newish_file = File.new("entrantsOOP.txt", "a"){}
+	  newish_file = File.new("entrants.txt", "a"){}
 	  newish_file.puts uID 
 	  newish_file.puts athlete 
 	  newish_file.puts event
@@ -183,7 +266,7 @@ class Entryformobject
 
 
 	def writetoaddr(college, address)
-	  anew_file = File.new("addressOOP.txt", "a")
+	  anew_file = File.new("address.txt", "a")
 
 	  while address.index(" ") != nil
 	    to_plus_index = address.index(" ")
@@ -317,7 +400,7 @@ class Eventpageobject
 	end
 
 	def writetotimes(str)
-	    new_file = File.new("timesOOP.txt", "a")
+	    new_file = File.new("times.txt", "a")
 	    new_file.puts str
 	    new_file.close
 	end
@@ -611,7 +694,7 @@ end
 
 z = Resultpageobject.new
 
-binding.pry
+
 
 
 

@@ -356,25 +356,19 @@ class Eventpageobject < Entryformobject
 
 		str1 = ""
 		event = theparams['event']
-		times.each do |time|
 
+		times.each do |time|
 			# Had to use double quotes below to make line breaks not an issue.
 			theiD = time.keys # each run will make theiD equal the key (from times) of the loop
-
 			theiDtime = time[theiD[0]] #getting the time from the key
-
 			theiD = theiD[0].chomp("\r\n-time") #makes the key the number
-
 			str1 << (theiD.chomp("-time") << "," << theiDtime << ",") #throws all the strings together each loop
 		end
+		
 		str2 = event << "," << str1.chop
-
-
 		writetotimes(str2)
 
 	end
-
-
 
 end
 
@@ -612,7 +606,7 @@ class Resultpageobject < Eventpageobject
 
 			comboarray[2][m].each do |it|
 
-				confscombopush << conffromcollegearr(it)
+				confscombopush << conffromcollegearr(it).join("")
 
 			end
 

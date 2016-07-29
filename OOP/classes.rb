@@ -11,7 +11,7 @@ class Entryformobject
 		iDs = Array.new
 		goodies.readlines.each_with_index do |line, index|
 			if index%5 == 0
-				iDs << line
+				iDs << line.chomp
 			end
 		end
 		return iDs
@@ -216,7 +216,7 @@ class Eventpageobject < Entryformobject
 		names = Array.new
 		goodies.readlines.each_with_index do |line, index|
 			if index%5 == 1
-				names << line
+				names << line.chomp
 			end
 		end
 		return names
@@ -227,7 +227,7 @@ class Eventpageobject < Entryformobject
 		events = Array.new
 		goodies.readlines.each_with_index do |line, index|
 			if index%5 == 2
-				events << line.split(", ")
+				events << line.chomp.split(", ")
 			end
 
 		end
@@ -242,12 +242,11 @@ class Eventpageobject < Entryformobject
 		i = 0
 		participants = Array.new
 		while i < eventstuff.length
+
 			if eventstuff[i].include?(eventname)
 				participants << namestuff[i]
-				i+=1
-			else
-				i+=1
 			end
+			i += 1
 		end
 
 		return participants	
@@ -258,7 +257,7 @@ class Eventpageobject < Entryformobject
 		collegenames = Array.new
 		goodies.readlines.each_with_index do |line, index|
 			if index%5 == 3
-				collegenames << line
+				collegenames << line.chomp
 			end
 		end
 
@@ -273,12 +272,11 @@ class Eventpageobject < Entryformobject
 
 		thecolleges = Array.new
 		while i < eventstuff.length
+
 			if eventstuff[i].include?(eventname)
 				thecolleges << collegestuff[i]
-				i+=1
-			else
-				i+=1
 			end
+			i += 1
 		end
 		return thecolleges
 	end
@@ -292,12 +290,11 @@ class Eventpageobject < Entryformobject
 		theiDs = Array.new
 
 		while i < eventstuff.length
+
 			if eventstuff[i].include?(eventname)
 				theiDs << iDstuff[i]
-				i += 1
-			else
-				i += 1
 			end
+			i += 1
 		end
 		return theiDs
 	end
@@ -347,10 +344,10 @@ class Eventpageobject < Entryformobject
 	end
 
 
-	def paramstotimes()
+	def paramstotimes(theparams)
 
-		theparams = params	
 		times = []
+
 		theparams.keys.each do |key|
 			if key.include? "-time" 
 				times << {key => theparams[key]} 
@@ -368,7 +365,7 @@ class Eventpageobject < Entryformobject
 
 			theiD = theiD[0].chomp("\r\n-time") #makes the key the number
 
-			str1 << (theiD << "," << theiDtime << ",") #throws all the strings together each loop
+			str1 << (theiD.chomp("-time") << "," << theiDtime << ",") #throws all the strings together each loop
 		end
 		str2 = event << "," << str1.chop
 
@@ -420,7 +417,7 @@ class Resultpageobject < Eventpageobject
 		iDs = Array.new
 		goodies.readlines.each_with_index do |line, index|
 			if index%5 == 0
-				iDs << line
+				iDs << line.chomp
 			end
 		end
 		return iDs
@@ -614,7 +611,7 @@ class Resultpageobject < Eventpageobject
 		while m < comboarray[2].length
 
 			comboarray[2][m].each do |it|
-				binding.pry
+
 				confscombopush << conffromcollegearr(it)
 
 			end

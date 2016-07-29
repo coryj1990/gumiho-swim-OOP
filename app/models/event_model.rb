@@ -36,6 +36,7 @@ def readerevents(thefilename)
 	goodies = File.open(thefilename, "r")
 	events = Array.new
 	goodies.readlines.each_with_index do |line, index|
+
 		if index%5 == 2
 			events << line.split(", ")
 		end
@@ -162,8 +163,6 @@ def writetotimes(str)
   new_file.puts str
   new_file.close
 end
-
-
 
 
 

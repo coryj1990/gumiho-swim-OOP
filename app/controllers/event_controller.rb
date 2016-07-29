@@ -1,22 +1,17 @@
 ## This controller includes variables to use for any of the views pages
 # The basis of these view pags is the event name,
 require "pry"
+require "./OOP/classes.rb"
 
 MyApp.get "/events/1650freestyle" do
+
 	@current_page = "1650 Freestyle"
 
-	@peoplein1650F = peopleinevent("1650 Freestyle", "entrants.txt")
-	@colleges1650F = collegeofperson("1650 Freestyle", "entrants.txt")
-	@iDs1650F = iDofperson("1650 Freestyle", "entrants.txt")
-
-	n = 0
-	confs1650F = []
-	while n < @colleges1650F.length
-		confs1650F[n] = conffromcollegearr(@colleges1650F[n])
-		n += 1
-	end
-
-	@confs1650F = confs1650F
+	y = Eventpageobject.new
+	@peoplein1650F = y.peopleinevent(@current_page, "entrants.txt")
+	@colleges1650F = y.collegeofperson(@current_page, "entrants.txt")
+	@confs1650F = y.confarrforevent(@current_page, "entrants.txt")
+	@iDs1650F = y.iDofperson(@current_page, "entrants.txt")
 
 	erb :"events/1650freestyle"
 end
@@ -24,35 +19,23 @@ end
 MyApp.get "/events/200butterfly" do
 	@current_page = "200 Butterfly"
 
-	@peoplein200BU = peopleinevent("200 Butterfly", "entrants.txt")
-	@colleges200BU = collegeofperson("200 Butterfly", "entrants.txt")
-	@iDs200BU = iDofperson("200 Butterfly", "entrants.txt")
+	y = Eventpageobject.new
+	@peoplein200BU = y.peopleinevent(@current_page, "entrants.txt")
+	@colleges200BU = y.collegeofperson(@current_page, "entrants.txt")
+	@confs200BU = y.confarrforevent(@current_page, "entrants.txt")
+	@iDs200BU = y.iDofperson(@current_page, "entrants.txt")
 
-	n = 0
-	confs200BU = []
-	while n < @colleges200BU.length
-		confs200BU[n] = conffromcollegearr(@colleges200BU[n])
-		n += 1
-	end
-
-	@confs200BU = confs200BU
 	erb :"events/200butterfly"
 end
 
 MyApp.get "/events/200freestyle" do
 	@current_page = "200 Freestyle"
 
-	@peoplein200FR = peopleinevent("200 Freestyle", "entrants.txt")
-	@colleges200FR = collegeofperson("200 Freestyle", "entrants.txt")
-	@iDs200FR = iDofperson("200 Freestyle", "entrants.txt")
-
-	n = 0
-	confs200FR = []
-	while n < @colleges200FR.length
-		confs200FR[n] = conffromcollegearr(@colleges200FR[n])
-		n += 1
-	end
-	@confs200FR = confs200FR
+	y = Eventpageobject.new
+	@peoplein200FR = y.peopleinevent(@current_page, "entrants.txt")
+	@colleges200FR = y.collegeofperson(@current_page, "entrants.txt")
+	@confs200FR = y.confarrforevent(@current_page, "entrants.txt")
+	@iDs200FR = y.iDofperson(@current_page, "entrants.txt")
 
 	erb :"events/200freestyle"
 end
@@ -60,17 +43,11 @@ end
 MyApp.get "/events/100backstroke" do
 	@current_page = "100 Backstroke"
 
-	@peoplein100BA = peopleinevent("100 Backstroke", "entrants.txt")
-	@colleges100BA = collegeofperson("100 Backstroke", "entrants.txt")
-	@iDs100BA = iDofperson("100 Backstroke", "entrants.txt")
-
-	n = 0
-	confs100BA = []
-	while n < @colleges100BA.length
-		confs100BA[n] = conffromcollegearr(@colleges100BA[n])
-		n += 1
-	end
-	@confs100BA = confs100BA
+	y = Eventpageobject.new
+	@peoplein100BA = y.peopleinevent(@current_page, "entrants.txt")
+	@colleges100BA = y.collegeofperson(@current_page, "entrants.txt")
+	@confs100BA = y.confarrforevent(@current_page, "entrants.txt")
+	@iDs100BA = y.iDofperson(@current_page, "entrants.txt")
 
 	erb :"events/100backstroke"
 end
@@ -78,17 +55,11 @@ end
 MyApp.get "/events/100breaststroke" do
 	@current_page = "100 Breaststroke"
 
-	@peoplein100BR = peopleinevent("100 Breaststroke", "entrants.txt")
-	@colleges100BR = collegeofperson("100 Breaststroke", "entrants.txt")
-	@iDs100BR = iDofperson("100 Breaststroke", "entrants.txt")
-
-	n = 0
-	confs100BR = []
-	while n < @colleges100BR.length
-		confs100BR[n] = conffromcollegearr(@colleges100BR[n])
-		n += 1
-	end
-	@confs100BR = confs100BR
+	y = Eventpageobject.new
+	@peoplein100BR = y.peopleinevent(@current_page, "entrants.txt")
+	@colleges100BR = y.collegeofperson(@current_page, "entrants.txt")
+	@confs100BR = y.confarrforevent(@current_page, "entrants.txt")
+	@iDs100BR = y.iDofperson(@current_page, "entrants.txt")
 
 	erb :"events/100breaststroke"
 end
@@ -96,17 +67,11 @@ end
 MyApp.get "/events/50freestyle" do
 	@current_page = "50 Freestyle"
 
-	@peoplein50FRE = peopleinevent("50 Freestyle", "entrants.txt")
-	@colleges50FRE = collegeofperson("50 Freestyle", "entrants.txt")
-	@iDs50FRE = iDofperson("50 Freestyle", "entrants.txt")
-
-	n = 0
-	confs50FRE = []
-	while n < @colleges50FRE.length
-		confs50FRE[n] = conffromcollegearr(@colleges50FRE[n])
-		n += 1
-	end
-	@confs50FRE = confs50FRE
+	y = Eventpageobject.new
+	@peoplein50FRE = y.peopleinevent(@current_page, "entrants.txt")
+	@colleges50FRE = y.collegeofperson(@current_page, "entrants.txt")
+	@confs50FRE = y.confarrforevent(@current_page, "entrants.txt")
+	@iDs50FRE = y.iDofperson(@current_page, "entrants.txt")
 
 	erb :"events/50freestyle"
 end
@@ -114,17 +79,11 @@ end
 MyApp.get "/events/100freestyle" do
 	@current_page = "100 Freestyle"
 
-	@peoplein100FR = peopleinevent("100 Freestyle", "entrants.txt")
-	@colleges100FR = collegeofperson("100 Freestyle", "entrants.txt")
-	@iDs100FR = iDofperson("100 Freestyle", "entrants.txt")
-
-	n = 0
-	confs100FR = []
-	while n < @colleges100FR.length
-		confs100FR[n] = conffromcollegearr(@colleges100FR[n])
-		n += 1
-	end
-	@confs100FR = confs100FR
+	y = Eventpageobject.new
+	@peoplein100FR = y.peopleinevent(@current_page, "entrants.txt")
+	@colleges100FR = y.collegeofperson(@current_page, "entrants.txt")
+	@confs100FR = y.confarrforevent(@current_page, "entrants.txt")
+	@iDs100FR = y.iDofperson(@current_page, "entrants.txt")
 
 	erb :"events/100freestyle"
 end
@@ -132,17 +91,11 @@ end
 MyApp.get "/events/200backstroke" do
 	@current_page = "200 Backstroke"
 
-	@peoplein200BA = peopleinevent("200 Backstroke", "entrants.txt")
-	@colleges200BA = collegeofperson("200 Backstroke", "entrants.txt")
-	@iDs200BA = iDofperson("200 Backstroke", "entrants.txt")
-
-	n = 0
-	confs200BA = []
-	while n < @colleges200BA.length
-		confs200BA[n] = conffromcollegearr(@colleges200BA[n])
-		n += 1
-	end
-	@confs200BA = confs200BA
+	y = Eventpageobject.new
+	@peoplein200BA = y.peopleinevent(@current_page, "entrants.txt")
+	@colleges200BA = y.collegeofperson(@current_page, "entrants.txt")
+	@confs200BA = y.confarrforevent(@current_page, "entrants.txt")
+	@iDs200BA = y.iDofperson(@current_page, "entrants.txt")
 
 	erb :"events/200backstroke"
 end
@@ -150,17 +103,11 @@ end
 MyApp.get "/events/200breaststroke" do
 	@current_page = "200 Breaststroke"
 
-	@peoplein200BR = peopleinevent("200 Breaststroke", "entrants.txt")
-	@colleges200BR = collegeofperson("200 Breaststroke", "entrants.txt")
-	@iDs200BR = iDofperson("200 Breaststroke", "entrants.txt")
-
-	n = 0
-	confs200BR = []
-	while n < @colleges200BR.length
-		confs200BR[n] = conffromcollegearr(@colleges200BR[n])
-		n += 1
-	end
-	@confs200BR = confs200BR
+	y = Eventpageobject.new
+	@peoplein200BR = y.peopleinevent(@current_page, "entrants.txt")
+	@colleges200BR = y.collegeofperson(@current_page, "entrants.txt")
+	@confs200BR = y.confarrforevent(@current_page, "entrants.txt")
+	@iDs200BR = y.iDofperson(@current_page, "entrants.txt")
 
 	erb :"events/200breaststroke"
 end
@@ -168,17 +115,11 @@ end
 MyApp.get "/events/500freestyle" do
 	@current_page = "500 Freestyle"
 
-	@peoplein500FR = peopleinevent("500 Freestyle", "entrants.txt")
-	@colleges500FR = collegeofperson("500 Freestyle", "entrants.txt")
-	@iDs500FR = iDofperson("500 Freestyle", "entrants.txt")
-
-	n = 0
-	confs500FR = []
-	while n < @colleges500FR.length
-		confs500FR[n] = conffromcollegearr(@colleges500FR[n])
-		n += 1
-	end
-	@confs500FR = confs500FR
+	y = Eventpageobject.new
+	@peoplein500FR = y.peopleinevent(@current_page, "entrants.txt")
+	@colleges500FR = y.collegeofperson(@current_page, "entrants.txt")
+	@confs500FR = y.confarrforevent(@current_page, "entrants.txt")
+	@iDs500FR = y.iDofperson(@current_page, "entrants.txt")
 
 	erb :"events/500freestyle"
 end
@@ -186,17 +127,11 @@ end
 MyApp.get "/events/100butterfly" do
 	@current_page = "100 Butterfly"
 
-	@peoplein100BU = peopleinevent("100 Butterfly", "entrants.txt")
-	@colleges100BU = collegeofperson("100 Butterfly", "entrants.txt")
-	@iDs100BU = iDofperson("100 Butterfly", "entrants.txt")
-
-	n = 0
-	confs100BU = []
-	while n < @colleges100BU.length
-		confs100BU[n] = conffromcollegearr(@colleges100BU[n])
-		n += 1
-	end
-	@confs100BU = confs100BU
+	y = Eventpageobject.new
+	@peoplein100BU = y.peopleinevent(@current_page, "entrants.txt")
+	@colleges100BU = y.collegeofperson(@current_page, "entrants.txt")
+	@confs100BU = y.confarrforevent(@current_page, "entrants.txt")
+	@iDs100BU = y.iDofperson(@current_page, "entrants.txt")
 
 	erb :"events/100butterfly"
 end
@@ -204,49 +139,21 @@ end
 MyApp.get "/events/400medley" do
 	@current_page = "400 Individual Medley"
 
-	@peoplein400IM = peopleinevent("400 Individual Medley", "entrants.txt")
-	@colleges400IM = collegeofperson("400 Individual Medley", "entrants.txt")
-	@iDs400IM = iDofperson("400 Individual Medley", "entrants.txt")
-
-	n = 0
-	confs400IM = []
-	while n < @colleges400IM.length
-		confs400IM[n] = conffromcollegearr(@colleges400IM[n])
-		n += 1
-	end
-	@confs400IM = confs400IM
+	y = Eventpageobject.new
+	@peoplein400IM = y.peopleinevent(@current_page, "entrants.txt")
+	@colleges400IM = y.collegeofperson(@current_page, "entrants.txt")
+	@confs400IM = y.confarrforevent(@current_page, "entrants.txt")
+	@iDs400IM = y.iDofperson(@current_page, "entrants.txt")
 
 	erb :"events/400medley"
 end
 
 MyApp.post "/event/times" do
 
-# params = {"event"=>"100 Backstroke", "14\r\n-time"=>"5", "16\r\n-time"=>"10", "Submit"=>"Submit"}	
+	# params = {"event"=>"100 Backstroke", "14\r\n-time"=>"5", "16\r\n-time"=>"10", "Submit"=>"Submit"}	
 
-	times = []
-	params.keys.each do |key|
-		if key.include? "-time" 
-			times << {key => params[key]} 
-		end
-	end 
+	y.paramstotimes
 
-	str1 = ""
-	event = params['event']
-	times.each do |time|
-
-		# Had to use double quotes below to make line breaks not an issue.
-		theiD = time.keys # each run will make theiD equal the key (from times) of the loop
-
-		theiDtime = time[theiD[0]] #getting the time from the key
-
-		theiD = theiD[0].chomp("\r\n-time") #makes the key the number
-
-		str1 << (theiD << "," << theiDtime << ",") #throws all the strings together each loop
-	end
-	str2 = event << "," << str1.chop
-
-
-	writetotimes(str2)
 erb :"home"
 end
 

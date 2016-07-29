@@ -43,3 +43,8 @@ Raffael Munson
 200 Freestyle, 200 Butterfly, 50 Freestyle, 100 Freestyle, 200 Breaststroke, 100 Butterfly
 Tulsa U
 800 S Tucker Dr, Tulsa, OK
+10
+Anew Person
+1650 Freestyle, 50 Freestyle, 100 Freestyle, 200 Backstroke, 100 Butterfly, 400 Individual Medley
+Anew College
+Pittsburgh, PA

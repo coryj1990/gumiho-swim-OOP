@@ -4,88 +4,6 @@ require "httparty"
 
 class Entryformobject
 
-	def setparams()
-
-		@name = params['Name']
-		@college = params['College']
-		@address = params['Address']
-
-		@stuffs1650F = params['1650F']
-		@stuffs200FR = params['200FR']
-		@stuffs100BA = params['100BA']
-		@stuffs100BR = params['100BR']
-		@stuffs200BU = params['200BU']
-		@stuffs50FRE = params['50FRE']
-		@stuffs100FR = params['100FR']
-		@stuffs200BA = params['200BA']
-		@stuffs200BR = params['200BR']
-		@stuffs500FR = params['500FR']
-		@stuffs100BU = params['100BU']
-		@stuffs400IM = params['400IM']
-
-	end
-
-	def getname()
-		return @name
-	end
-
-	def getcollege()
-		return @college
-	end
-
-	def getaddr()
-		return @address
-	end
-
-	def get1650F()
-		return @stuffs1650F
-	end
-
-	def get200FR()
-		return @stuffs200FR
-	end
-
-	def get100BA()
-		return @stuffs100BA
-	end
-
-	def get100BR()
-		return @stuffs100BR
-	end
-
-	def get200BU()
-		return @stuffs200BU
-	end
-
-	def get50FRE()
-		return @stuffs50FRE
-	end
-
-	def get100FR()
-		return @stuffs100FR
-	end
-
-	def get200BA()
-		return @stuffs200BA
-	end
-
-	def get200BR()
-		return @stuffs200BR
-	end
-
-	def get500FR()
-		return @stuffs500FR
-	end
-
-	def get100BU()
-		return @stuffs100BU
-	end
-
-	def get400IM()
-		return @stuffs400IM
-	end
-
-
 	def readerIDs(thefilename)
 		goodies = File.open(thefilename, "a")
 		goodies.close
@@ -233,7 +151,7 @@ class Entryformobject
 # entrants.txt. they are written into the flatstorage as 4 lines
 # as ID, athlete name, events signed up for, and college.
 	def writetoentrants(uID, athlete, event, college, address)
-	  newish_file = File.new("entrants.txt", "a"){}
+	  newish_file = File.open("entrants.txt", "a"){}
 	  newish_file.puts uID 
 	  newish_file.puts athlete 
 	  newish_file.puts event
@@ -291,7 +209,7 @@ end
 # x.writetoaddr(college param, addr param)
 
 
-class Eventpageobject
+class Eventpageobject < Entryformobject
 
 	def readernames(thefilename)
 		goodies = File.open(thefilename, "r")
@@ -365,7 +283,28 @@ class Eventpageobject
 		return thecolleges
 	end
 
-	def conffromcollegearr(collegename, filename)
+	def iDofperson(eventname, txtfile)
+		eventstuff = readerevents(txtfile)
+		iDstuff = readerIDs(txtfile)
+
+		i = 0
+
+		theiDs = Array.new
+
+		while i < eventstuff.length
+			if eventstuff[i].include?(eventname)
+				theiDs << iDstuff[i]
+				i += 1
+			else
+				i += 1
+			end
+		end
+		return theiDs
+	end
+
+
+
+	def conffromcollegearr(collegename)
 		stuff = File.open("address.txt", "r")
 		addrconf = []
 
@@ -390,10 +329,12 @@ class Eventpageobject
 
 	def confarrforevent(eventname, txtfile)
 		n = 0
-		confs1650F = []
+		confs = []
 		while n < collegeofperson(eventname, txtfile).length
-			confs = conffromcollegearr(collegeofperson(eventname, txtfile)[n])
+
+			confs[n] = conffromcollegearr(collegeofperson(eventname, txtfile)[n])
 			n += 1
+
 		end
 		return confs
 
@@ -408,15 +349,16 @@ class Eventpageobject
 
 	def paramstotimes()
 
+		theparams = params	
 		times = []
-		params.keys.each do |key|
+		theparams.keys.each do |key|
 			if key.include? "-time" 
-				times << {key => params[key]} 
+				times << {key => theparams[key]} 
 			end
 		end 
 
 		str1 = ""
-		event = params['event']
+		event = theparams['event']
 		times.each do |time|
 
 			# Had to use double quotes below to make line breaks not an issue.
@@ -689,20 +631,6 @@ class Resultpageobject < Eventpageobject
 	end
 
 end
-
-
-
-z = Resultpageobject.new
-
-
-
-
-
-
-
-
-
-
 
 
 

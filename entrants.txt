@@ -1,0 +1,45 @@
+1
+Cory Johnson
+1650 Freestyle, 200 Freestyle, 100 Backstroke, 100 Breaststroke, 50 Freestyle, 100 Butterfly
+University of Omaha
+6001 Dodge St, Omaha, NE
+2
+Erik Johnson
+200 Butterfly, 100 Freestyle, 200 Backstroke, 200 Breaststroke, 500 Freestyle, 400 Individual Medley
+University of Alaska
+910 Yukon Dr, Fairbanks, AK
+3
+Clark Kent
+100 Backstroke, 100 Breaststroke, 200 Butterfly, 200 Backstroke, 200 Breaststroke, 100 Butterfly
+Kansas University
+1450 Jayhawk Blvd, Lawrence, KS
+4
+Bruce Wayne
+1650 Freestyle, 200 Freestyle, 50 Freestyle, 100 Freestyle, 500 Freestyle, 400 Individual Medley
+University of Chicago
+5801 S Ellis Ave, Chicago, IL
+5
+Mary Poppins
+200 Freestyle, 100 Backstroke, 100 Breaststroke, 200 Butterfly, 100 Freestyle, 200 Breaststroke
+University of Wyoming
+1000 E University Ave, Laramie, WY
+6
+Greg McGee
+200 Freestyle, 50 Freestyle, 200 Breaststroke, 500 Freestyle, 100 Butterfly, 400 Individual Medley
+University of Florida
+Gainesville, FL 
+7
+Robert Freeman
+1650 Freestyle, 100 Backstroke, 100 Breaststroke, 50 Freestyle, 200 Breaststroke, 500 Freestyle
+University of Alabama
+Birmingham, AL
+8
+Enrique Salazar
+1650 Freestyle, 100 Backstroke, 100 Breaststroke, 200 Backstroke, 500 Freestyle, 400 Individual Medley
+University of Iowa
+Iowa City, IA
+9
+Raffael Munson
+200 Freestyle, 200 Butterfly, 50 Freestyle, 100 Freestyle, 200 Breaststroke, 100 Butterfly
+Tulsa U
+800 S Tucker Dr, Tulsa, OK

@@ -1,0 +1,40 @@
+1
+Cowee Jones
+200 Butterfly, 50 Freestyle, 200 Backstroke, 500 Freestyle
+this new college
+Lincoln, NE
+2
+Dude 2
+200 Freestyle, 100 Breaststroke, 200 Butterfly, 200 Backstroke, 100 Butterfly
+College2
+Washington, DC
+3
+Dude 3
+200 Freestyle, 100 Breaststroke, 200 Butterfly, 200 Backstroke, 100 Butterfly
+College3
+Los Angeles, CA
+4
+Dude 4
+200 Freestyle, 100 Breaststroke, 200 Butterfly, 100 Freestyle, 200 Backstroke, 500 Freestyle, 400 Individual Medley
+College4
+Madison, WI
+5
+Dude 5
+1650 Freestyle, 200 Freestyle, 100 Breaststroke, 200 Butterfly, 50 Freestyle, 200 Backstroke, 100 Butterfly
+College5
+Iowa City, IA
+6
+Dude 6
+1650 Freestyle, 100 Backstroke, 100 Breaststroke, 50 Freestyle, 100 Freestyle, 200 Backstroke, 500 Freestyle, 400 Individual Medley
+College6
+Salt Lake City, UT
+7
+Dude 7
+1650 Freestyle, 200 Freestyle, 200 Butterfly, 50 Freestyle, 100 Freestyle, 200 Backstroke, 200 Breaststroke
+College7
+Las Vegas, NV
+8
+Dude 8
+1650 Freestyle, 200 Freestyle, 100 Breaststroke, 200 Butterfly, 100 Freestyle, 200 Backstroke, 100 Butterfly, 400 Individual Medley
+College8
+Little Rock, AR

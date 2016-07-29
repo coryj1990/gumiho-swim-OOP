@@ -1,0 +1,28 @@
+<div class="content l-content">
+	<h1 class="content__header">500 Freestyle</h1>
+	<form class="entryform" method="post" action="/event/times">
+	
+	<input type="hidden" name="event" value="500 Freestyle">
+
+		<ol class="competitors__list">
+			
+			<% i = 0
+			while i < @peoplein500FR.length %>
+
+
+			<li class="competitors__listitem competitors__listitem--odd">
+				<p class="competitors__name"><%= @peoplein500FR[i]  %></p><p class="competitors__name"><%= @colleges500FR[i] %> | <%= @confs500FR[i][0] %></p>
+				<div class="competitors__time">
+					<input class="competitors__textfield" type="text" name="<%= @iDs500FR[i]%>-time" placeholder="time"> 
+					<p>sec.</p>
+				</div>
+			</li>
+
+			<% i+=1
+			end %>
+
+
+		</ol>
+		<input class="entryform__submit l-right" type="submit" name="Submit">
+	</form>
+</div>

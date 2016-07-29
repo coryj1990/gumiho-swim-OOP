@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= @current_page %></title>
+  <link rel="stylesheet" type="text/css" href="/globalstyles.css">
+</head>
+<body>
+<nav class="nav">
+  <h1 class="header">SwimTron</h1>
+  <ul class="navlinks">
+    <li class="navlinks__listitem <%= "navlinks__listitem--current" if @current_page == "Home" %>">
+      <a class="navlinks__link" href="/">Welcome</a>
+    </li>
+    <li class="navlinks__listitem <%= "navlinks__listitem--current" if @current_page == "Contestant" %>">
+      <a class="navlinks__link" href="/entry">Contestant</a>
+    </li>
+    <li class="navlinks__listitem <%= "navlinks__listitem--current" if @current_page == "Events" %>">
+      <span class="navlinks__link">Events</span>
+      <ul>
+        <li>
+          <a class="navlinks__sublink" href="/events/100backstroke">100 Backstroke</a>
+        </li>
+        <li>
+          <a class="navlinks__sublink" href="/events/200backstroke">200 Backstroke</a>
+        </li>
+        <li>
+          <a class="navlinks__sublink" href="/events/100breaststroke">100 Breaststroke</a>
+        </li>
+        <li>
+          <a class="navlinks__sublink" href="/events/200breaststroke">200 Breaststroke</a>
+        </li>
+        <li>
+          <a class="navlinks__sublink" href="/events/100butterfly">100 Butterfly</a>
+        </li>
+        <li>
+          <a class="navlinks__sublink" href="/events/200butterfly">200 Butterfly</a>
+        </li>
+        <li>
+          <a class="navlinks__sublink" href="/events/50freestyle">50 Freestyle</a>
+        </li>
+        <li>
+          <a class="navlinks__sublink" href="/events/100freestyle">100 Freestyle</a>
+        </li>
+        <li>
+          <a class="navlinks__sublink" href="/events/200freestyle">200 Freestyle</a>
+        </li>
+        <li>
+          <a class="navlinks__sublink" href="/events/500freestyle">500 Freestyle</a>
+        </li>
+        <li>
+          <a class="navlinks__sublink" href="/events/1650freestyle">1650 Freestyle</a>
+        </li>
+        <li>
+          <a class="navlinks__sublink" href="/events/400medley">400 Individual Medley</a>
+        </li>
+      </ul>
+    </li>
+    <li class="navlinks__listitem <%= "navlinks__listitem--current" if @current_page == "Winners" %>">
+      <a class="navlinks__link" href="/winners">Winners</a>
+    </li>
+  </ul>
+</nav>
+
+<!-- The `yield` below is where the contents of a view file are put. -->
+<!-- Then the combined layout + view is sent back to the client. -->
+<%= yield %>
+
+</body>
+</html>

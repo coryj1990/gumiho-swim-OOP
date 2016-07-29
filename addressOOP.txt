@@ -1,0 +1,8 @@
+this new college, Western
+College2, Eastern
+College3, Western
+College4, Eastern
+College5, Eastern
+College6, Western
+College7, Western
+College8, Eastern

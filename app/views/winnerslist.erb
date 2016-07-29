@@ -1,0 +1,54 @@
+<script type="text/javascript" src="winners_scripts.js"></script>
+
+<div class="content l-content">
+	<h1 class="content__header">Winners</h1>
+	<ul class="winners__list">
+
+	<% n =0
+	while n < @arraytheevents.size %>
+
+	<h2 id="head_<%= @arraytheevents[n] %>" class="winners__eventhead">
+		<div class="winners__symbol">✚</div>
+		<%= @arraytheevents[n] %>
+	</h2>
+
+		<ol id="list_200BS" class="winners__list">
+
+		<% int = 0
+
+		while int < 3 && int < @arraycombo[0][n].size%>
+
+			<% if int == 0 %>
+				<li class="winners__listitem winners__listitem--gold">
+			<% end
+			if int == 1 %>
+				<li class="winners__listitem winners__listitem--silver">
+			<% end
+			if int == 2 %>
+				<li class="winners__listitem winners__listitem--bronze">
+			<% end %>
+
+
+			<p class="winners__name">
+			<%= @arraycombo[0][n][-1 - int] %>
+			</p>
+			<p class="winners__name">
+			<%= @arraycombo[2][n][-1 - int] %> | <%= @confscombo[n][-1 - int][0] %>
+
+
+			</p>
+			<p class="winners__name">
+			<%= @arraycombo[1][n][-1 - int] %> sec
+			</p>
+		</li>
+
+			<% int += 1
+		end %>
+		</ol>
+		
+		<% n += 1
+	end %>
+
+
+	</ul>
+</div>

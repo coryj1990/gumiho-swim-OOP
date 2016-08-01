@@ -20,18 +20,32 @@ window.addEventListener('load', function() {
 	//
 	//x is the position of a header in eventhead and the corresponding list of medalists
 	function makeEventListener(x){
+<<<<<<< HEAD
 		eventheads[x].addEventListener('mouseup', function(){
 			//if the list is hidden, it will be displayed
 			if (medalists[x].style.height == "0px") {
 				medalists[x].style.height = 'auto';
 				symbol[x].style.transform = "rotate(45deg)";
 				symbol[x].style.animationDuration = "0s"
+=======
+		eventheads[x].addEventListener('click', function(){
+			//if the list is hidden, it will be displayed
+			if (medalists[x].style.height == "0px") {
+				medalists[x].style.height = 'auto';
+				medalists[x].style.animationName = 'drop';
+				symbol[x].style.transform = "rotate(45deg)";
+				symbol[x].style.animationDuration = "0s";
+>>>>>>> eb6de99ef1926fca06ff84c16a65bd6d5ad5fa76
 			}
 			//if the list is not hidden, clicking on the header will hide it again
 			else {
 				medalists[x].style.height = '0px';
 				symbol[x].style.transform = "rotate(0deg)";
+<<<<<<< HEAD
 				symbol[x].style.animationDuration = "0.8s"
+=======
+				symbol[x].style.animationDuration = "0.8s";
+>>>>>>> eb6de99ef1926fca06ff84c16a65bd6d5ad5fa76
 			}
 		})
 	}

@@ -8,3 +8,23 @@ University of Alabama, Eastern
 University of Iowa, Eastern
 Tulsa U, Western
 Anew College, Eastern
+UNL, Western
+College of Hair Design, Western
+NYU, Eastern
+UNL, Western
+UNL, Western
+OCS, Western
+USC, Western
+Yale, Eastern
+TCU, Western
+Johns Hopkins, Eastern
+UNK, Western
+Le Cordon Bleu, Eastern
+Creighton, Western
+Yale, Eastern
+NYU, Eastern
+TCU, Western
+USC, Western
+University of Hawaii at Hilo, Western
+UNO, Western
+

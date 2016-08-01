@@ -2,15 +2,15 @@
 	<h1 class="content__header">100 Backstroke</h1>
 	<form class="entryform" method="post" action="/event/times">
 
-	<input type="hidden" name="event" value="100 Backstroke">
+	<input type="hidden" name="event" value="100 Backstroke">	
 
 		<ol class="competitors__list">
 
 			<% i = 0
 			while i < @peoplein100BA.length %>
 
+			<li class="competitors__listitem competitors__listitem--even">
 
-			<li class="competitors__listitem competitors__listitem--odd">
 				<p class="competitors__name"><%= @peoplein100BA[i]  %></p><p class="competitors__name"><%= @colleges100BA[i] %> | <%= @confs100BA[i][0] %></p>
 				<div class="competitors__time">
 					<input class="competitors__textfield" type="text" name="<%= @iDs100BA[i]%>-time" placeholder="time"> 
@@ -20,7 +20,7 @@
 
 			<% i+=1
 			end %>
-			
+
 		</ol>
 		<input class="entryform__submit l-right" type="submit" name="Submit">
 	</form>

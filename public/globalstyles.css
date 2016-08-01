@@ -72,8 +72,12 @@ nav ul ul {
 }
 
 nav ul li:hover > ul {
+<<<<<<< HEAD
 	z-index: 10;
 	height: 225px;
+=======
+	z-index: 6;
+>>>>>>> eb6de99ef1926fca06ff84c16a65bd6d5ad5fa76
 	display: block;
 }
 
@@ -109,7 +113,10 @@ nav ul li:hover > ul {
 
 .navlinks__listitem--current{
 	background-color: #FFF;
+<<<<<<< HEAD
 	z-index: 4;
+=======
+>>>>>>> eb6de99ef1926fca06ff84c16a65bd6d5ad5fa76
 }
 .navlinks__listitem--current:hover{
 	background-color: #FFF;
@@ -177,6 +184,10 @@ nav ul li:hover > ul {
 
 .competitors__listitem{
 	margin-left: -3em;
+<<<<<<< HEAD
+=======
+	margin-bottom: 4px;
+>>>>>>> eb6de99ef1926fca06ff84c16a65bd6d5ad5fa76
 	padding: 0px 20px 0px 20px;
 	border-radius: 12px;
 	display: flex;
@@ -278,8 +289,35 @@ nav ul li:hover > ul {
 	list-style: none;
 }
 
+<<<<<<< HEAD
 
 .winners{}
+=======
+.modal{
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100vw;
+	background: rgba(10,30,40,0.5);
+	z-index: 5;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+}
+
+.modal__wrapper{
+	display: none;
+}
+
+.modal__box{
+	background-color: #FFF;
+	padding: 10px 45px;
+	text-align: center;
+	border-radius: 10px;
+}
+>>>>>>> eb6de99ef1926fca06ff84c16a65bd6d5ad5fa76
 
 .winners__eventhead{
 	font-family: Tahoma, Verdana, sans-serif;
@@ -335,9 +373,12 @@ nav ul li:hover > ul {
 	display: flex;
 	flex-flow: row nowrap;
 	justify-content: space-between;
+<<<<<<< HEAD
 	animation-name: drop;
 	animation-duration: 1s;
 	animation-fill-mode: forwards;
+=======
+>>>>>>> eb6de99ef1926fca06ff84c16a65bd6d5ad5fa76
 }
 
 @keyframes drop {

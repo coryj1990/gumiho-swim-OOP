@@ -237,7 +237,3 @@ return comboarray
 end
 
 
-
-
-
-

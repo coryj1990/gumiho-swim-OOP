@@ -44,7 +44,62 @@ Raffael Munson
 Tulsa U
 800 S Tucker Dr, Tulsa, OK
 10
-Anew Person
-1650 Freestyle, 50 Freestyle, 100 Freestyle, 200 Backstroke, 100 Butterfly, 400 Individual Medley
-Anew College
-Pittsburgh, PA
+Rory Gilmore
+200 Freestyle, 100 Backstroke, 100 Breaststroke, 100 Freestyle, 100 Butterfly, 400 Individual Medley
+Yale
+New Haven, CT
+11
+Harold Ham
+100 Breaststroke, 200 Breaststroke
+TCU
+Texas
+12
+Seymour Butz
+100 Backstroke, 100 Breaststroke, 100 Freestyle, 100 Butterfly, 400 Individual Medley
+Johns Hopkins
+Baltimore, MD
+13
+Vincent Price
+200 Freestyle, 200 Backstroke, 200 Breaststroke
+UNK
+Kearney, NE
+14
+Jimmy John
+100 Breaststroke, 200 Breaststroke
+Le Cordon Bleu
+Paris, France
+15
+Talky Tina
+1650 Freestyle, 200 Freestyle, 50 Freestyle, 100 Freestyle, 500 Freestyle
+Creighton
+Omaha, NE
+16
+Paris Gellar
+1650 Freestyle, 200 Freestyle, 100 Backstroke, 100 Breaststroke, 200 Butterfly, 50 Freestyle, 100 Freestyle, 200 Backstroke, 200 Breaststroke, 500 Freestyle, 100 Butterfly, 400 Individual Medley
+Yale
+New Haven, CT
+17
+Marzipan
+1650 Freestyle, 500 Freestyle
+NYU
+New York City, NY
+18
+Martina McBride
+1650 Freestyle, 200 Freestyle, 200 Butterfly, 500 Freestyle, 100 Butterfly
+TCU
+Texas
+19
+Diane Lane
+200 Butterfly, 100 Butterfly
+USC
+Los Angeles, CA
+20
+Lilo
+1650 Freestyle, 200 Freestyle, 50 Freestyle, 100 Freestyle, 500 Freestyle
+University of Hawaii at Hilo
+Hilo, HI
+21
+Hannah Banana
+100 Backstroke, 100 Breaststroke, 200 Butterfly, 100 Freestyle, 100 Butterfly
+UNO
+Omaha, NE

@@ -1,5 +1,4 @@
 require "pry"
-<<<<<<< HEAD
 require "./OOP/classes.rb"
 
 MyApp.get "/entry" do

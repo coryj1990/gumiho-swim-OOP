@@ -1,4 +1,5 @@
 require "pry"
+require "./OOP/classes.rb"
 
 
 MyApp.get "/winners" do

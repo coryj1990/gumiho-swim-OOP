@@ -22,9 +22,5 @@ gem 'rubocop', '~> 0.37.2', require: false
 gem 'inch', require: false
 
 gem 'httparty'
-<<<<<<< HEAD
-gem 'json'
 gem "sqlite3"
-=======
 gem 'json'
->>>>>>> eb6de99ef1926fca06ff84c16a65bd6d5ad5fa76

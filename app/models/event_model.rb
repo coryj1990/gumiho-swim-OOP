@@ -36,10 +36,7 @@ def readerevents(thefilename)
 	goodies = File.open(thefilename, "r")
 	events = Array.new
 	goodies.readlines.each_with_index do |line, index|
-<<<<<<< HEAD
 
-=======
->>>>>>> eb6de99ef1926fca06ff84c16a65bd6d5ad5fa76
 		if index%5 == 2
 			events << line.split(", ")
 		end

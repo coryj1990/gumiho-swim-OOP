@@ -213,9 +213,9 @@ def readerlistedplaces(thefilename)
 
 	toparrayofids.each do |replacenames|
 		replacenames.each_with_index do |names, index|
-			pushingarray[index] = collegelookbyID("entrants.txt", replacenames[index])
-			anotherpushing[index] = addresslookbyID("entrants.txt", replacenames[index])
-			replacenames[index] = namelookbyID("entrants.txt", replacenames[index])
+			pushingarray[index] = collegelookbyID("./entrants.txt", replacenames[index])
+			anotherpushing[index] = addresslookbyID("./entrants.txt", replacenames[index])
+			replacenames[index] = namelookbyID("./entrants.txt", replacenames[index])
 
 
 		end

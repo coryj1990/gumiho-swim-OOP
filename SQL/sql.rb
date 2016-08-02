@@ -17,7 +17,7 @@ varname = SQLite3::Database.new "swimmeet.db"
 # addressarr = readeraddress('../entrants.txt')
 
 # eventarr = ['1650F', '200FR', '100BA', '100BR', '200BU', '50FRE', '100FR', '200BA', '200BR', '500FR', '100BU', '400IM']
-# eventnames = ['1650 Freestyle', '200 Freestyle', '100 Backstroke', '100 Breaststroke', '200 Butterfly', '50 Freestyle', '100 Freestyle', '200 Backstroke', '200 Breasttroke', '500 Freestyle', '100 Butterfly', '400 Individual Medley']
+# eventnames = ['1650 Freestyle', '200 Freestyle', '100 Backstroke', '100 Breaststroke', '200 Butterfly', '50 Freestyle', '100 Freestyle', '200 Backstroke', '200 Breaststroke', '500 Freestyle', '100 Butterfly', '400 Individual Medley']
 # # need to use eastorwest(addressarr[i]) for single conf call
 
 # i = 0
@@ -171,18 +171,16 @@ eventsfromtimes = readereventsfromtimes('../times.txt')
 comboarray = readerlistedplaces('../times.txt')
 
 varname.execute("DROP TABLE IF EXISTS COMPETEINFO")
-varname.execute("CREATE TABLE COMPETEINFO (rowID INTEGER PRIMARY KEY, ATHLETEID INTEGER, EVENTID TEXT, TIMES INT)")
+varname.execute("CREATE TABLE COMPETEINFO (rowID INTEGER PRIMARY KEY, ATHLETEID INTEGER, EVENTID TEXT, TIMES REAL)")
 
+binding.pry
 n = 0
-m = 0
-
 
 while n < eventsfromtimes.size
+	m = 0
 	while m < comboarray[0][n].size
 
-		varname.execute("INSERT INTO COMPETEINFO (EVENTID) SELECT EVENTABV FROM EVENTS WHERE EVENTNAME = (?)", [eventsfromtimes[n]])
-		varname.execute("INSERT INTO COMPETEINFO (ATHLETEID) SELECT ATHLETEID FROM ATHLETES WHERE NAME = (?)", [comboarray[0][n][m]])
-		varname.execute("INSERT INTO COMPETEINFO (TIMES) VALUES (?)", [comboarray[1][n][m]])
+		varname.execute("INSERT INTO COMPETEINFO (ATHLETEID, EVENTID, TIMES) VALUES ((SELECT EVENTABV FROM EVENTS WHERE EVENTNAME = \"#{eventsfromtimes[n]}\"), (SELECT ATHLETEID FROM ATHLETES WHERE NAME = \"#{comboarray[0][n][m]}\"), (#{comboarray[1][n][m].to_f}))")
 
 		m += 1
 	end
@@ -195,7 +193,7 @@ end
 
 
 
-
+# UNION SELECT ATHLETEID FROM ATHLETES WHERE NAME = \"#{comboarray[0][n][m]}\" UNION VALUES (#{comboarray[1][n][m].to_f})"
 
 
 

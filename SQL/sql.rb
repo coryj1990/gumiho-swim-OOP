@@ -7,33 +7,24 @@ require_relative '../app/models/winnerlist_model.rb'
 require_relative '../app/models/API_models.rb'
 require_relative '../app/controllers/secretstuff.rb'
 
-def readerIDs(thefilename)
-	goodies = File.open(thefilename, "r")
-	iDs = Array.new
-	goodies.readlines.each_with_index do |line, index|
-		if index%5 == 0
-			iDs << line
-		end
-	end
-	return iDs
-end
-
 varname = SQLite3::Database.new "swimmeet.db"
-
-varname.execute("CREATE TABLE ATHLETES (rowid INTEGER PRIMARY KEY, athleteid INTEGER, COLLEGE TEXT, CONF TEXT, ADDRESS TEXT, NAME TEXT);")
+varname.execute("DROP TABLE IF EXISTS EVENTS")
+varname.execute("CREATE TABLE EVENTS (rowid INTEGER PRIMARY KEY, EVENTABV TEXT, EVENTNAME TEXT)")
 
 idarr = readerIDs('../entrants.txt')
 namearr = readernames('../entrants.txt')
 collegearr = readercollege('../entrants.txt')
 addressarr = readeraddress('../entrants.txt')
 
+eventarr = ['1650F', '200FR', '100BA', '100BR', '200BU', '50FRE', '100FR', '200BA', '200BR', '500FR', '100BU', '400IM']
+eventnames = ['1650 Freestyle', '200 Freestyle', '100 Backstroke', '100 Breaststroke', '200 Butterfly', '50 Freestyle', '100 Freestyle', '200 Backstroke', '200 Breasttroke', '500 Freestyle', '100 Butterfly', '400 Individual Medley']
 # need to use eastorwest(addressarr[i]) for single conf call
 
 i = 0
 
-while i < idarr.size
+while i < eventarr.size
 
-	varname.execute("INSERT INTO ATHLETES (athleteid, COLLEGE, CONF, ADDRESS, NAME) VALUES(?, ?, ?, ?, ?)", [idarr[i].chomp, collegearr[i].chomp, 'temporary', addressarr[i].chomp, namearr[i].chomp])
+	varname.execute("INSERT INTO EVENTS (EVENTABV, EVENTNAME) VALUES (?, ?)", [eventarr[i].chomp], eventnames[i])
 	i += 1
 
 end

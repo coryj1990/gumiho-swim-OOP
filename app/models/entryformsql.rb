@@ -5,7 +5,7 @@ require 'HTTParty'
 
 class EntryformSQL
 
-	attr_accessor :name, :college, :address, :eventstring, :conf
+	attr_accessor :name, :college, :address, :eventstring, :eventsarr, :conf, :id
 
 	def latget(spot)
 		hasher = HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=#{spot}&key=#{API_KEY}")
@@ -35,10 +35,11 @@ class EntryformSQL
 		@conf = eastorwest(@address)
 
 		DB.execute("INSERT INTO ATHLETES (COLLEGE, CONF, ADDRESS, NAME) VALUES (?,?,?,?)", [@college, @conf, @address, @name])
+		@id = DB.last_insert_row_id
 
 		n = 0
 		while n < @eventsarr.size
-			DB.execute("INSERT INTO COMPETEINFO (ATHLETEID, EVENTID) VALUES ((SELECT EVENTABV FROM EVENTS WHERE EVENTNAME = \"#{@eventsarr[n]}\"), (SELECT ATHLETEID FROM ATHLETES WHERE NAME = \"#{@name}\"))")
+			DB.execute("INSERT INTO COMPETEINFO (EVENTID, ATHLETEID) VALUES ((SELECT EVENTABV FROM EVENTS WHERE EVENTNAME = \"#{@eventsarr[n]}\"), (SELECT ATHLETEID FROM ATHLETES WHERE NAME = \"#{@name}\"))")
 			n += 1
 		end
 

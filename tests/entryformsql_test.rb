@@ -8,8 +8,8 @@ class EntryformSQLTest < Minitest::Test
 
 		DB.execute("DROP TABLE IF EXISTS ATHLETES")
 		DB.execute("DROP TABLE IF EXISTS EVENTS")
-		DB.execute("DROP TABLE IF EXISTS COMPETEINTO")
-		DB.execute("CREATE TABLE ATHLETES (ATHLETEID INTEGER PRIMARY KEY, COLLEGE TEXT, CONF TEXT, ADDRESS TEXT, NAME TEXT)")
+		DB.execute("DROP TABLE IF EXISTS COMPETEINFO")
+		DB.execute("CREATE TABLE IF NOT EXISTS ATHLETES (ATHLETEID INTEGER PRIMARY KEY, COLLEGE TEXT, CONF TEXT, ADDRESS TEXT, NAME TEXT)")
 		DB.execute("CREATE TABLE IF NOT EXISTS EVENTS (ROWID INTEGER PRIMARY KEY, EVENTABV TEXT, EVENTNAME TEXT)")
 		DB.execute("CREATE TABLE IF NOT EXISTS COMPETEINFO (ROWID INTEGER PRIMARY KEY, ATHLETEID INTEGER, EVENTID TEXT, TIMES REAL)")
 
@@ -39,15 +39,23 @@ class EntryformSQLTest < Minitest::Test
 
 	end
 
-	def test_competeinfo_table_if_entered
+	def test_competeinfo_table_if_entered_matches
 
 		n = 0
-		binding.pry
 		while n < DB.execute("SELECT ATHLETEID FROM COMPETEINFO").size
-			assert_equal DB.execute("SELECT ATHLETEID FROM COMPETEINFO")[n]['ATHLETEID'], DB.execute("SELECT NAME FROM ATHLETES WHERE ATHLETEID = 1")[0]['NAME']
+			assert_equal DB.execute("SELECT ATHLETEID FROM COMPETEINFO")[n]['ATHLETEID'], @objname.id
 			n += 1
 		end
 
+	end
+
+	def test_competeinfo_table_has_same_events
+		binding.pry
+		n = 0
+		while n < DB.execute("SELECT EVENTID FROM COMPETEINFO").size
+			assert_equal DB.execute("SELECT EVENTID FROM COMPETEINFO WHERE ATHLETEID = #{@objname.id}")[n]['EVENTID'], DB.execute("SELECT EVENTABV FROM EVENTS WHERE EVENTNAME = \"#{@objname.eventsarr[n]}\"")[0]['EVENTABV']
+			n += 1
+		end
 	end
 
 

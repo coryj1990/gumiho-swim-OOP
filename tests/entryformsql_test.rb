@@ -7,22 +7,12 @@ class EntryformSQLTest < Minitest::Test
 		super
 
 		DB.execute("DROP TABLE IF EXISTS ATHLETES")
-		DB.execute("DROP TABLE IF EXISTS EVENTS")
 		DB.execute("DROP TABLE IF EXISTS COMPETEINFO")
 		DB.execute("CREATE TABLE IF NOT EXISTS ATHLETES (ATHLETEID INTEGER PRIMARY KEY, COLLEGE TEXT, CONF TEXT, ADDRESS TEXT, NAME TEXT)")
-		DB.execute("CREATE TABLE IF NOT EXISTS EVENTS (ROWID INTEGER PRIMARY KEY, EVENTABV TEXT, EVENTNAME TEXT)")
 		DB.execute("CREATE TABLE IF NOT EXISTS COMPETEINFO (ROWID INTEGER PRIMARY KEY, ATHLETEID INTEGER, EVENTID TEXT, TIMES REAL)")
 
-		eventarr = ['1650F', '200FR', '100BA', '100BR', '200BU', '50FRE', '100FR', '200BA', '200BR', '500FR', '100BU', '400IM']
-		eventnames = ['1650 Freestyle', '200 Freestyle', '100 Backstroke', '100 Breaststroke', '200 Butterfly', '50 Freestyle', '100 Freestyle', '200 Backstroke', '200 Breaststroke', '500 Freestyle', '100 Butterfly', '400 Individual Medley']
-		i = 0
-
-		while i < eventarr.size
-			DB.execute("INSERT INTO EVENTS (EVENTABV, EVENTNAME) VALUES (?, ?)", [eventarr[i].chomp], eventnames[i])
-			i += 1
-		end
-
-		@objname = EntryformSQL.new("Ricky Bobby", "UNO", "Omaha, NE", "100 Backstroke, 200 Breaststroke")
+		@objname = EntryformSQL.new("Ricky Bobby", "UNO", "Omaha, NE", "100 Backstroke, 200 Breaststroke, 50 Freestyle, 200 Freestyle, 100 Butterfly")
+		@objname2 = EntryformSQL.new("Kenny Loggins", "UAZ", "Tempe, AZ", "200 Butterfly, 50 Freestyle, 200 Freestyle, 1650 Freestyle, 100 Breaststroke")
 
 	end
 
@@ -33,30 +23,24 @@ class EntryformSQLTest < Minitest::Test
 
 	def test_athlete_table_if_entered
 
-		assert_equal DB.execute("SELECT NAME FROM ATHLETES WHERE ATHLETEID = 1")[0]['NAME'], @objname.name
-		assert_equal DB.execute("SELECT ADDRESS FROM ATHLETES WHERE ATHLETEID = 1")[0]['ADDRESS'], @objname.address
-		assert_equal DB.execute("SELECT COLLEGE FROM ATHLETES WHERE ATHLETEID = 1")[0]['COLLEGE'], @objname.college
+		assert_equal DB.execute("SELECT NAME FROM ATHLETES WHERE ATHLETEID = \"#{@objname.id}\"")[0]['NAME'], @objname.name
+		assert_equal DB.execute("SELECT ADDRESS FROM ATHLETES WHERE ATHLETEID = \"#{@objname.id}\"")[0]['ADDRESS'], @objname.address
+		assert_equal DB.execute("SELECT COLLEGE FROM ATHLETES WHERE ATHLETEID = \"#{@objname.id}\"")[0]['COLLEGE'], @objname.college
 
 	end
 
 	def test_competeinfo_table_if_entered_matches
 
 		n = 0
-		while n < DB.execute("SELECT ATHLETEID FROM COMPETEINFO").size
-			assert_equal DB.execute("SELECT ATHLETEID FROM COMPETEINFO")[n]['ATHLETEID'], @objname.id
-			n += 1
-		end
-
-	end
-
-	def test_competeinfo_table_has_same_events
-		binding.pry
-		n = 0
-		while n < DB.execute("SELECT EVENTID FROM COMPETEINFO").size
+		while n < @objname.eventsarr.size
+			assert_equal DB.execute("SELECT ATHLETEID FROM COMPETEINFO WHERE EVENTID = (SELECT EVENTABV FROM EVENTS WHERE EVENTNAME = \"#{@objname.eventsarr[n]}\")")[0]['ATHLETEID'], @objname.id
 			assert_equal DB.execute("SELECT EVENTID FROM COMPETEINFO WHERE ATHLETEID = #{@objname.id}")[n]['EVENTID'], DB.execute("SELECT EVENTABV FROM EVENTS WHERE EVENTNAME = \"#{@objname.eventsarr[n]}\"")[0]['EVENTABV']
 			n += 1
 		end
+
 	end
+
+	
 
 
 end

@@ -28,6 +28,14 @@ class MyApp < Sinatra::Base
   set :views, Proc.new { File.join(root, "app", "views") }
 end
 
+if MyApp.settings.environment == :development
+	DB = SQLite3::Database.new "swimmeet.db"
+elsif MyApp.settings.environment == :test
+	DB = SQLite3::Database.new "test.db"
+end
+
+DB.results_as_hash = true
+
 require 'tilt/erb'
 
 Dir[File.dirname(__FILE__) + '/app/models/*.rb'].each {|file| require file }

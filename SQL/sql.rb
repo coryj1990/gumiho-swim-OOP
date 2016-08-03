@@ -173,7 +173,6 @@ comboarray = readerlistedplaces('../times.txt')
 varname.execute("DROP TABLE IF EXISTS COMPETEINFO")
 varname.execute("CREATE TABLE COMPETEINFO (rowID INTEGER PRIMARY KEY, ATHLETEID INTEGER, EVENTID TEXT, TIMES REAL)")
 
-binding.pry
 n = 0
 
 while n < eventsfromtimes.size

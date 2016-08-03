@@ -40,7 +40,7 @@ class EntryformSQLTest < Minitest::Test
 
 	end
 
-	
+		
 
 
 end

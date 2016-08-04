@@ -16,9 +16,9 @@ class CompeteSQL
 
 	end
 
-	def self.find_event_results(eventname)
+	def self.find_event_results_ordered(eventname)
 
-		return DB.execute("SELECT * FROM COMPETEINFO WHERE EVENTID = \"#{EventsSQL.get_event_abv(eventname)}\"")
+		return DB.execute("SELECT * FROM COMPETEINFO WHERE EVENTID = \"#{EventsSQL.get_event_abv(eventname)}\" ORDER BY TIMES ASC")
 
 	end
 

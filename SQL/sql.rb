@@ -7,7 +7,7 @@ require_relative '../app/models/winnerlist_model.rb'
 require_relative '../app/models/API_models.rb'
 require_relative '../app/controllers/secretstuff.rb'
 
-varname = SQLite3::Database.new "swimmeet.db"
+varname = SQLite3::Database.new "./swimmeet.db"
 # varname.execute("DROP TABLE IF EXISTS EVENTS")
 # varname.execute("CREATE TABLE EVENTS (rowid INTEGER PRIMARY KEY, EVENTABV TEXT, EVENTNAME TEXT)")
 
@@ -28,6 +28,58 @@ varname = SQLite3::Database.new "swimmeet.db"
 # 	i += 1
 
 # end
+
+	varname.execute("DROP TABLE IF EXISTS ATHLETES")
+	varname.execute("CREATE TABLE ATHLETES (ATHLETEID INTEGER PRIMARY KEY, NAME TEXT, ADDRESS TEXT, COLLEGE TEXT, CONF TEXT)")
+
+	def readerIDs(thefilename)
+		goodies = File.open(thefilename, "r")
+		iDs = Array.new
+		goodies.readlines.each_with_index do |line, index|
+			if index%5 == 0
+				iDs << line
+			end
+		end
+		return iDs
+	end
+
+	idarr = readerIDs('entrants.txt')
+	namearr = readernames('entrants.txt')
+	collegearr = readercollege('entrants.txt')
+	addressarr = readeraddress('entrants.txt')
+
+	def latget(spot)
+		hasher = HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=#{spot}&key=#{API_KEY}")
+		tochecklat = hasher["results"][0]["geometry"]["location"]["lng"]
+
+		return tochecklat
+	end
+
+	# Takes an address, puts it into latget, and compares it to the latitude coordinate of the mississippi
+	# 
+	# Returns Eastern or Western if the address's coordinate is East or West of the mississippi
+
+	def eastorwest(theaddr)
+		if latget(theaddr) > -95.2075
+			eorwarray = "Eastern"
+		end
+		if latget(theaddr) < -95.2075
+			eorwarray = "Western"
+		end
+
+		return eorwarray
+	end
+
+# need to use eastorwest(addressarr[i]) for single conf call
+
+i = 0
+
+while i < idarr.size
+
+	varname.execute("INSERT INTO ATHLETES (athleteid, COLLEGE, CONF, ADDRESS, NAME) VALUES(?, ?, ?, ?, ?)", [idarr[i].chomp, collegearr[i].chomp, eastorwest(addressarr[i].chomp), addressarr[i].chomp, namearr[i].chomp])
+	i += 1
+
+end
 
 def readerlistedplaces(thefilename)
 	moregoods = File.open(thefilename, "r")
@@ -143,9 +195,9 @@ def readerlistedplaces(thefilename)
 
 	toparrayofids.each do |replacenames|
 		replacenames.each_with_index do |names, index|
-			pushingarray[index] = collegelookbyID("../entrants.txt", replacenames[index])
-			anotherpushing[index] = addresslookbyID("../entrants.txt", replacenames[index])
-			replacenames[index] = namelookbyID("../entrants.txt", replacenames[index])
+			pushingarray[index] = collegelookbyID("entrants.txt", replacenames[index])
+			anotherpushing[index] = addresslookbyID("entrants.txt", replacenames[index])
+			replacenames[index] = namelookbyID("entrants.txt", replacenames[index])
 
 
 		end
@@ -167,11 +219,11 @@ return comboarray
 end
 
 
-eventsfromtimes = readereventsfromtimes('../times.txt')
-comboarray = readerlistedplaces('../times.txt')
+eventsfromtimes = readereventsfromtimes('times.txt')
+comboarray = readerlistedplaces('times.txt')
 
 varname.execute("DROP TABLE IF EXISTS COMPETEINFO")
-varname.execute("CREATE TABLE COMPETEINFO (rowID INTEGER PRIMARY KEY, ATHLETEID INTEGER, EVENTID TEXT, TIMES REAL)")
+varname.execute("CREATE TABLE COMPETEINFO (ROWID INTEGER PRIMARY KEY, ATHLETEID INTEGER, EVENTID TEXT, TIMES REAL)")
 
 n = 0
 
@@ -179,7 +231,7 @@ while n < eventsfromtimes.size
 	m = 0
 	while m < comboarray[0][n].size
 
-		varname.execute("INSERT INTO COMPETEINFO (ATHLETEID, EVENTID, TIMES) VALUES ((SELECT EVENTABV FROM EVENTS WHERE EVENTNAME = \"#{eventsfromtimes[n]}\"), (SELECT ATHLETEID FROM ATHLETES WHERE NAME = \"#{comboarray[0][n][m]}\"), (#{comboarray[1][n][m].to_f}))")
+		varname.execute("INSERT INTO COMPETEINFO (ATHLETEID,EVENTID, TIMES) VALUES ((SELECT EVENTABV FROM EVENTS WHERE EVENTNAME = \"#{eventsfromtimes[n]}\"), (#{comboarray[1][n][m].to_f}))")
 
 		m += 1
 	end 	

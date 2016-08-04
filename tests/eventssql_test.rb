@@ -11,12 +11,6 @@
 
 # 	end	
 
-# 	def test_get_event
-
-# 		assert_kind_of Object, EventsSQL.get_event
-
-# 	end
-
 # 	def test_get_event_name
 
 # 		assert_equal EventsSQL.get_event_name("1650F"), "1650 Freestyle"

@@ -11,20 +11,19 @@ class CompeteSQLTest < Minitest::Test
 
 	end
 
-	def test_if_times_updated
+	def test_event_results_ordered
 
-		assert_kind_of Object, @objtime
-
-	end
-
-	def test_event_results
-
-		@eventresults = CompeteSQL.find_event_results("50 Freestyle")
+		@eventresults = CompeteSQL.find_event_results_ordered("50 Freestyle")
+		@noresults = CompeteSQL.find_event_results_ordered("100 Backstroke")
 
 		assert_equal @eventresults[0]['TIMES'], @objtime.time
 		assert_equal @eventresults[1]['TIMES'], @objtime2.time
+		assert_operator @eventresults[0]['TIMES'], :< , @eventresults[1]['TIMES']
 
 	end
+
+	
+
 
 
 end

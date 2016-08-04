@@ -27,11 +27,6 @@
 
 # 	end
 
-# 	def test_object_created
-# 		# Just to see if it truely is an object
-# 		assert_kind_of Object, @objname
-# 	end
-
 # 	def test_athlete_table_if_entered
 # 		# Just to see if entered data matches find_by_id function
 # 		assert_equal EntryformSQL.find_by_id(@objname.id)[0]['NAME'], @objname.name

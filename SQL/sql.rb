@@ -29,57 +29,57 @@ varname = SQLite3::Database.new "./swimmeet.db"
 
 # end
 
-	varname.execute("DROP TABLE IF EXISTS ATHLETES")
-	varname.execute("CREATE TABLE ATHLETES (ATHLETEID INTEGER PRIMARY KEY, NAME TEXT, ADDRESS TEXT, COLLEGE TEXT, CONF TEXT)")
+# 	varname.execute("DROP TABLE IF EXISTS ATHLETES")
+# 	varname.execute("CREATE TABLE ATHLETES (ATHLETEID INTEGER PRIMARY KEY, NAME TEXT, ADDRESS TEXT, COLLEGE TEXT, CONF TEXT)")
 
-	def readerIDs(thefilename)
-		goodies = File.open(thefilename, "r")
-		iDs = Array.new
-		goodies.readlines.each_with_index do |line, index|
-			if index%5 == 0
-				iDs << line
-			end
-		end
-		return iDs
-	end
+# 	def readerIDs(thefilename)
+# 		goodies = File.open(thefilename, "r")
+# 		iDs = Array.new
+# 		goodies.readlines.each_with_index do |line, index|
+# 			if index%5 == 0
+# 				iDs << line
+# 			end
+# 		end
+# 		return iDs
+# 	end
 
-	idarr = readerIDs('entrants.txt')
-	namearr = readernames('entrants.txt')
-	collegearr = readercollege('entrants.txt')
-	addressarr = readeraddress('entrants.txt')
+# 	idarr = readerIDs('entrants.txt')
+# 	namearr = readernames('entrants.txt')
+# 	collegearr = readercollege('entrants.txt')
+# 	addressarr = readeraddress('entrants.txt')
 
-	def latget(spot)
-		hasher = HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=#{spot}&key=#{API_KEY}")
-		tochecklat = hasher["results"][0]["geometry"]["location"]["lng"]
+# 	def latget(spot)
+# 		hasher = HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=#{spot}&key=#{API_KEY}")
+# 		tochecklat = hasher["results"][0]["geometry"]["location"]["lng"]
 
-		return tochecklat
-	end
+# 		return tochecklat
+# 	end
 
-	# Takes an address, puts it into latget, and compares it to the latitude coordinate of the mississippi
-	# 
-	# Returns Eastern or Western if the address's coordinate is East or West of the mississippi
+# 	# Takes an address, puts it into latget, and compares it to the latitude coordinate of the mississippi
+# 	# 
+# 	# Returns Eastern or Western if the address's coordinate is East or West of the mississippi
 
-	def eastorwest(theaddr)
-		if latget(theaddr) > -95.2075
-			eorwarray = "Eastern"
-		end
-		if latget(theaddr) < -95.2075
-			eorwarray = "Western"
-		end
+# 	def eastorwest(theaddr)
+# 		if latget(theaddr) > -95.2075
+# 			eorwarray = "Eastern"
+# 		end
+# 		if latget(theaddr) < -95.2075
+# 			eorwarray = "Western"
+# 		end
 
-		return eorwarray
-	end
+# 		return eorwarray
+# 	end
 
-# need to use eastorwest(addressarr[i]) for single conf call
+# # need to use eastorwest(addressarr[i]) for single conf call
 
-i = 0
+# i = 0
 
-while i < idarr.size
+# while i < idarr.size
 
-	varname.execute("INSERT INTO ATHLETES (athleteid, COLLEGE, CONF, ADDRESS, NAME) VALUES(?, ?, ?, ?, ?)", [idarr[i].chomp, collegearr[i].chomp, eastorwest(addressarr[i].chomp), addressarr[i].chomp, namearr[i].chomp])
-	i += 1
+# 	varname.execute("INSERT INTO ATHLETES (athleteid, COLLEGE, CONF, ADDRESS, NAME) VALUES(?, ?, ?, ?, ?)", [idarr[i].chomp, collegearr[i].chomp, eastorwest(addressarr[i].chomp), addressarr[i].chomp, namearr[i].chomp])
+# 	i += 1
 
-end
+# end
 
 def readerlistedplaces(thefilename)
 	moregoods = File.open(thefilename, "r")
@@ -231,7 +231,7 @@ while n < eventsfromtimes.size
 	m = 0
 	while m < comboarray[0][n].size
 
-		varname.execute("INSERT INTO COMPETEINFO (ATHLETEID,EVENTID, TIMES) VALUES ((SELECT EVENTABV FROM EVENTS WHERE EVENTNAME = \"#{eventsfromtimes[n]}\"), (#{comboarray[1][n][m].to_f}))")
+		varname.execute("INSERT INTO COMPETEINFO (ATHLETEID, EVENTID, TIMES) VALUES ((SELECT ATHLETEID FROM ATHLETES WHERE NAME = \"#{comboarray[0][n][m]}\"), (SELECT EVENTABV FROM EVENTS WHERE EVENTNAME = \"#{eventsfromtimes[n]}\"), (#{comboarray[1][n][m].to_f}))")
 
 		m += 1
 	end 	

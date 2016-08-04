@@ -182,7 +182,7 @@ while n < eventsfromtimes.size
 		varname.execute("INSERT INTO COMPETEINFO (ATHLETEID, EVENTID, TIMES) VALUES ((SELECT EVENTABV FROM EVENTS WHERE EVENTNAME = \"#{eventsfromtimes[n]}\"), (SELECT ATHLETEID FROM ATHLETES WHERE NAME = \"#{comboarray[0][n][m]}\"), (#{comboarray[1][n][m].to_f}))")
 
 		m += 1
-	end
+	end 	
 	n += 1
 end
 

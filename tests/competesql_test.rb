@@ -17,5 +17,14 @@ class CompeteSQLTest < Minitest::Test
 
 	end
 
+	def test_event_results
+
+		@eventresults = CompeteSQL.find_event_results("50 Freestyle")
+
+		assert_equal @eventresults[0]['TIMES'], @objtime.time
+		assert_equal @eventresults[1]['TIMES'], @objtime2.time
+
+	end
+
 
 end

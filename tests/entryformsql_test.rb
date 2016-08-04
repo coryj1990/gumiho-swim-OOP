@@ -93,7 +93,7 @@ class EntryformSQLTest < Minitest::Test
 		# Similarly, made function to update record by name, because I would not expect our swimmeet 
 		# coordinator to base every edit off of the ID. Maybe they at first have the thought "I need to
 		# update Kenny's record" instead of "I need to update number 1's record".
-		
+
 		origid = @objname2.id
 		origcollege = @objname2.college
 		origaddr = @objname2.address
@@ -103,6 +103,22 @@ class EntryformSQLTest < Minitest::Test
 		refute_equal EntryformSQL.find_by_id(origid)[0]['COLLEGE'], origcollege
 		assert_equal EntryformSQL.find_by_id(origid)[0]['ATHLETEID'], origid
 		refute_equal EntryformSQL.find_by_id(origid)[0]['ADDRESS'], origaddr
+
+	end
+
+	def test_delete_record_by_name
+		# If an athlete were to request to not participate, or for whatever reason, this test
+		# Will see if the records in ATHLETES and COMPETEINFO are deleted.
+
+		deletedname = @objname.name
+		deletedid = @objname.id
+		notdeletedname = @objname2.name
+
+		EntryformSQL.delete_record_by_name("Ricky Bobby")
+
+		assert_empty EntryformSQL.find_by_name(deletedname)
+		assert_empty DB.execute("SELECT * FROM COMPETEINFO WHERE ATHLETEID = #{deletedid}")
+		refute_empty EntryformSQL.find_by_name(notdeletedname)
 
 	end
 

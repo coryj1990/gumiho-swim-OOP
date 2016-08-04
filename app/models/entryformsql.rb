@@ -123,6 +123,18 @@ class EntryformSQL
 
 	end	
 
+	# This will delete a record from the DB associated with the name
+	#
+	# Returns nothing
+	def self.delete_record_by_name(name)
+
+		@idtodelete = EntryformSQL.find_by_name(name)[0]['ATHLETEID']
+		DB.execute("DELETE FROM ATHLETES WHERE ATHLETEID = #{@idtodelete}")
+		DB.execute("DELETE FROM COMPETEINFO WHERE ATHLETEID = #{@idtodelete}")
+
+
+	end
+
 
 
 end

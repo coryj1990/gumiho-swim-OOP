@@ -7,6 +7,11 @@ class EventsSQL
 	attr_accessor :eventabv, :eventname
 
 	# These get_event functions will take an abbreviation or name, and returns its other type.
+	def self.get_event
+
+		return DB.execute("SELECT * FROM EVENTS")
+
+	end
 
 	def self.get_event_name(eventabv)
 

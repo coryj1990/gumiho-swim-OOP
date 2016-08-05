@@ -6,7 +6,8 @@ require "./OOP/classes.rb"
 MyApp.get "/events/1650freestyle" do
 
 	@current_page = "1650 Freestyle"
-
+	@theabv = EventsSQL.select_from_where("EVENTABV", "EVENTS", "EVENTNAME", @current_page)[0]['EVENTABV']
+	@fromDB = EntryformSQL.get_athletes_by_event(@theabv)
 	y = Eventpageobject.new
 	@peoplein1650F = y.peopleinevent(@current_page, "entrants.txt")
 	@colleges1650F = y.collegeofperson(@current_page, "entrants.txt")

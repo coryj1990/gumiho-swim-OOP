@@ -40,24 +40,9 @@ MyApp.post "/swimmers/new" do
 	x.setevent(stuffs1650F, stuffs200FR, stuffs100BA, stuffs100BR, stuffs200BU, stuffs50FRE, stuffs100FR, stuffs200BA, stuffs200BR, stuffs500FR, stuffs100BU, stuffs400IM)
 	x.writetoentrants(x.getuID, name, x.getevent, college, address)
 	x.writetoaddr(college, address)
-	# SO FAR the parameters posted from the entry form all have been captured
-	# and saved to entrants.txt. Issues that still exist are assigning different
-	# IDs to each athlete.
 
-	# String containing all of the contestant's registered events.
-	eventstring = checkIfInEvent(stuffs1650F, stuffs200FR, stuffs100BA, stuffs100BR, stuffs200BU, stuffs50FRE, stuffs100FR, stuffs200BA, stuffs200BR, stuffs500FR, stuffs100BU, stuffs400IM)
-
-	uID = idGeneration
+	EntryformSQL.new(name, college, address, x.getevent)
 	
-	# This is where all the action happens! As these are right now, the wri and 
-	# app combination are meant to first remove already existing contents in the 
-	# txt file and write/append to it. The final product should have logic where
-	# if the swim meet admin is just submitting their first entrant, the wri func
-	# is used. For all the other applicants the app is used.
-	multiinputapp(uID, name, eventstring, college, address)
-	college = params['College']
-	address = params['Address']
-	writetoaddr(college, address)
 
 	erb :"form/entryform"
 end

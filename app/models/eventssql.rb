@@ -7,8 +7,6 @@ class EventsSQL
 
 	extend Orm
 
-	attr_accessor :eventabv, :eventname
-
 	### IN THE CASE WHERE EVENTS NEED TO BE ADDED OR DELETED use these below.
 	### NEVER should they appear within code dealing with swimmeet info
 	# returns nothing!

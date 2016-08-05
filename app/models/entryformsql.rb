@@ -122,6 +122,11 @@ class EntryformSQL
 		DB.execute("DELETE FROM ATHLETES WHERE ATHLETEID = #{@idtodelete}")
 		DB.execute("DELETE FROM COMPETEINFO WHERE ATHLETEID = #{@idtodelete}")
 
+	end
+
+	def self.get_athletes_by_event(eventabv)
+
+		DB.execute("SELECT * FROM ATHLETES WHERE ATHLETEID = (SELECT ATHLETEID FROM COMPETEINFO WHERE EVENTID = \"#{eventabv}\")")
 
 	end
 

@@ -1,11 +1,14 @@
 require 'pry'
 require_relative '../controllers/secretstuff.rb'
 require 'HTTParty'
+require_relative 'ORMsql.rb'
 
 # This file contains all SQL class commands to manage ATHLETE and some COMPETEINFO records
 # in the database
 
 class EntryformSQL
+
+	extend Orm
 	# attr_accessor is a combo of the reader and writer attr stuffs.
 	attr_accessor :name, :college, :address, :eventstring, :eventsarr, :conf, :id
 

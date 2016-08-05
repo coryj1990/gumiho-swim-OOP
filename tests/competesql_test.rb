@@ -3,6 +3,7 @@ require 'pry'
 
 class CompeteSQLTest < Minitest::Test
 
+
 	def setup
 		super
 
@@ -13,8 +14,8 @@ class CompeteSQLTest < Minitest::Test
 
 	def test_event_results_ordered
 
-		@eventresults = CompeteSQL.find_event_results_ordered("50 Freestyle")
-		@noresults = CompeteSQL.find_event_results_ordered("100 Backstroke")
+		@eventresults = CompeteSQL.select_from_where("*", "COMPETEINFO", "EVENTID", EventsSQL.get_event_abv("50 Freestyle"))
+		@noresults = CompeteSQL.select_from_where("*", "COMPETEINFO", "EVENTID", EventsSQL.get_event_abv("100 Backstroke"))
 
 		assert_equal @eventresults[0]['TIMES'], @objtime.time
 		assert_equal @eventresults[1]['TIMES'], @objtime2.time
@@ -22,7 +23,7 @@ class CompeteSQLTest < Minitest::Test
 
 	end
 
-	
+
 
 
 

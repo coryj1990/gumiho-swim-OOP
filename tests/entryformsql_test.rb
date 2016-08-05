@@ -29,9 +29,10 @@ class EntryformSQLTest < Minitest::Test
 
 	def test_athlete_table_if_entered
 		# Just to see if entered data matches find_by_id function
-		assert_equal EntryformSQL.find_by_id(@objname.id)[0]['NAME'], @objname.name
-		assert_equal EntryformSQL.find_by_id(@objname.id)[0]['ADDRESS'], @objname.address
-		assert_equal EntryformSQL.find_by_id(@objname.id)[0]['COLLEGE'], @objname.college
+
+		assert_equal EntryformSQL.select_from_where("*","ATHLETES","ATHLETEID", @objname.id)[0]['NAME'], @objname.name
+		assert_equal EntryformSQL.select_from_where("*","ATHLETES","ATHLETEID", @objname.id)[0]['ADDRESS'], @objname.address
+		assert_equal EntryformSQL.select_from_where("*","ATHLETES","ATHLETEID", @objname.id)[0]['COLLEGE'], @objname.college
 
 	end
 
@@ -41,8 +42,8 @@ class EntryformSQLTest < Minitest::Test
 		# and checks to see if there is a matching record in COMPETEINFO with athleteid and eventid
 		n = 0
 		while n < @objname.eventsarr.size
-			assert_equal DB.execute("SELECT ATHLETEID FROM COMPETEINFO WHERE EVENTID = (SELECT EVENTABV FROM EVENTS WHERE EVENTNAME = \"#{@objname.eventsarr[n]}\")")[0]['ATHLETEID'], @objname.id
-			assert_equal DB.execute("SELECT EVENTID FROM COMPETEINFO WHERE ATHLETEID = #{@objname.id}")[n]['EVENTID'], DB.execute("SELECT EVENTABV FROM EVENTS WHERE EVENTNAME = \"#{@objname.eventsarr[n]}\"")[0]['EVENTABV']
+			assert_equal CompeteSQL.select_from_where("ATHLETEID", "COMPETEINFO", "EVENTID", EventsSQL.get_event_abv(@objname.eventsarr[n]))[0]['ATHLETEID'], @objname.id
+			assert_equal CompeteSQL.select_from_where("EVENTID", "COMPETEINFO", "ATHLETEID", @objname.id)[n]['EVENTID'], EventsSQL.select_from_where("EVENTABV", "EVENTS", "EVENTNAME", @objname.eventsarr[n])[0]['EVENTABV']
 			n += 1
 		end
 
@@ -51,38 +52,38 @@ class EntryformSQLTest < Minitest::Test
 	def test_found_obj_by_id
 		# checks if object made by using .find_by_id matches the instance information
 
-		assert_equal EntryformSQL.find_by_id(@objname.id)[0]['ATHLETEID'], @objname.id
-		assert_equal EntryformSQL.find_by_id(@objname.id)[0]['NAME'], @objname.name
-		assert_equal EntryformSQL.find_by_id(@objname.id)[0]['COLLEGE'], @objname.college
-		assert_equal EntryformSQL.find_by_id(@objname.id)[0]['ADDRESS'], @objname.address
-		assert_equal EntryformSQL.find_by_id(@objname2.id)[0]['ATHLETEID'], @objname2.id
+		assert_equal EntryformSQL.select_from_where("*", "ATHLETES", "ATHLETEID", @objname.id)[0]['ATHLETEID'], @objname.id
+		assert_equal EntryformSQL.select_from_where("*", "ATHLETES", "ATHLETEID", @objname.id)[0]['NAME'], @objname.name
+		assert_equal EntryformSQL.select_from_where("*", "ATHLETES", "ATHLETEID", @objname.id)[0]['COLLEGE'], @objname.college
+		assert_equal EntryformSQL.select_from_where("*", "ATHLETES", "ATHLETEID", @objname.id)[0]['ADDRESS'], @objname.address
+		assert_equal EntryformSQL.select_from_where("*", "ATHLETES", "ATHLETEID", @objname2.id)[0]['ATHLETEID'], @objname2.id
 
 	end
 
 	def test_found_obj_by_name
 		# checks if .find_by_name works the same way 
 
-		assert_equal EntryformSQL.find_by_name(@objname.name)[0]['NAME'], @objname.name
-		assert_equal EntryformSQL.find_by_name(@objname2.name)[0]['NAME'], @objname2.name
+		assert_equal EntryformSQL.select_from_where("*", "ATHLETES", "NAME", @objname.name)[0]['NAME'], @objname.name
+		assert_equal EntryformSQL.select_from_where("*", "ATHLETES", "NAME", @objname2.name)[0]['NAME'], @objname2.name
 
 	end
 	
-	def test_update_obj_name_and_college
-		# tests to see if initial info is changed (or not) after updating athlete record
+	# def test_update_obj_name_and_college
+	# 	# tests to see if initial info is changed (or not) after updating athlete record
 
-		origname = @objname.name
-		origid = @objname.id
-		origcollege = @objname.college
-		origaddr = @objname.address
+	# 	origname = @objname.name
+	# 	origid = @objname.id
+	# 	origcollege = @objname.college
+	# 	origaddr = @objname.address
 
-		EntryformSQL.update_record_by_id(1, "Billy Bob", "University of Pheonix", "Pheonix, AZ", "100 Freestyle, 200 Freestyle, 400 Intermediate Medley")
+	# 	EntryformSQL.update_record_by_id(1, "Billy Bob", "University of Pheonix", "Pheonix, AZ", "100 Freestyle, 200 Freestyle, 400 Intermediate Medley")
 
-		refute_equal origname, EntryformSQL.find_by_id(origid)[0]['NAME']
-		refute_equal origcollege, EntryformSQL.find_by_id(origid)[0]['COLLEGE']
-		assert_equal origid, EntryformSQL.find_by_id(origid)[0]['ATHLETEID']
-		refute_equal @objname.address, EntryformSQL.find_by_id(origid)[0]['ADDRESS']
+	# 	refute_equal origname, EntryformSQL.select_from_where("*", "ATHLETES", "ATHLETEID", origid)[0]['NAME']
+	# 	refute_equal origcollege, EntryformSQL.select_from_where("*", "ATHLETES", "ATHLETEID", origid)[0]['COLLEGE']
+	# 	assert_equal origid, EntryformSQL.select_from_where("*", "ATHLETES", "ATHLETEID", origid)[0]['ATHLETEID']
+	# 	refute_equal @objname.address, EntryformSQL.select_from_where("*", "ATHLETES", "ATHLETEID", origid)[0]['ADDRESS']
 
-	end
+	# end
 
 	# def test_update_obj_by_name
 	# 	# Similarly, made function to update record by name, because I would not expect our swimmeet 

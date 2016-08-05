@@ -1,8 +1,11 @@
 require 'pry'
+require_relative 'ORMsql.rb'
 
 # This file contains all functions needed to manage EVENTS table in database
 
 class EventsSQL
+
+	extend Orm
 
 	attr_accessor :eventabv, :eventname
 

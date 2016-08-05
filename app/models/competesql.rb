@@ -1,7 +1,9 @@
 require 'pry'
-
+require_relative 'ORMsql.rb'
 
 class CompeteSQL
+
+	extend Orm
 
 	attr_accessor :name, :time, :rowid, :recordathid
 

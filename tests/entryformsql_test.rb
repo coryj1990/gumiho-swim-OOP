@@ -42,7 +42,8 @@ class EntryformSQLTest < Minitest::Test
 		# and checks to see if there is a matching record in COMPETEINFO with athleteid and eventid
 		n = 0
 		while n < @objname.eventsarr.size
-			assert_equal CompeteSQL.select_from_where("ATHLETEID", "COMPETEINFO", "EVENTID", EventsSQL.get_event_abv(@objname.eventsarr[n]))[0]['ATHLETEID'], @objname.id
+
+			assert_equal CompeteSQL.select_from_where("ATHLETEID", "COMPETEINFO", "EVENTID", EventsSQL.select_from_where("EVENTABV", "EVENTS", "EVENTNAME", @objname.eventsarr[n])[0]['EVENTABV'])[0]['ATHLETEID'], @objname.id
 			assert_equal CompeteSQL.select_from_where("EVENTID", "COMPETEINFO", "ATHLETEID", @objname.id)[n]['EVENTID'], EventsSQL.select_from_where("EVENTABV", "EVENTS", "EVENTNAME", @objname.eventsarr[n])[0]['EVENTABV']
 			n += 1
 		end

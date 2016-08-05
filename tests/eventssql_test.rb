@@ -13,16 +13,16 @@ class EventsSQLTest < Minitest::Test
 
 	def test_get_event_name
 
-		assert_equal EventsSQL.get_event_name("1650F"), "1650 Freestyle"
-		refute_equal EventsSQL.get_event_name("200BA"), "100 Backstroke"
+		assert_equal EventsSQL.select_from_where("EVENTNAME", "EVENTS", "EVENTABV", "1650F")[0]['EVENTNAME'], "1650 Freestyle"
+		refute_equal EventsSQL.select_from_where("EVENTNAME", "EVENTS", "EVENTABV", "200BA")[0]['EVENTNAME'], "100 Backstroke"
 
 	end
 
 	def test_get_event_abv
 
-		assert_equal EventsSQL.get_event_abv("1650 Freestyle"), "1650F"
-		refute_equal EventsSQL.get_event_abv("200 Backstroke"), "200BU"
-
+		assert_equal EventsSQL.select_from_where("EVENTABV", "EVENTS", "EVENTNAME", "1650 Freestyle")[0]['EVENTABV'], "1650F"
+		refute_equal EventsSQL.select_from_where("EVENTABV", "EVENTS", "EVENTNAME", "200 Backstroke")[0]['EVENTABV'], "200BU"
+		binding.pry
 	end
 
 # 	def test_add_event

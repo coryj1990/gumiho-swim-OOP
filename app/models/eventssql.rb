@@ -18,13 +18,13 @@ class EventsSQL
 
 	def self.get_event_name(eventabv)
 
-		return DB.execute("SELECT EVENTNAME FROM EVENTS WHERE EVENTABV = \"#{eventabv}\"")[0]['EVENTNAME']
+		return DB.execute("SELECT EVENTNAME FROM EVENTS WHERE EVENTABV = \"#{eventabv}\"")
 
 	end
 
 	def self.get_event_abv(eventname)
 
-		return DB.execute("SELECT EVENTABV FROM EVENTS WHERE EVENTNAME = \"#{eventname}\"")[0]['EVENTABV']
+		return DB.execute("SELECT EVENTABV FROM EVENTS WHERE EVENTNAME = \"#{eventname}\"")
 
 	end
 

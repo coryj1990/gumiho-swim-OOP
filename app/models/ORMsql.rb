@@ -10,7 +10,7 @@ module Orm
 
 	def select_from_where(column, table, constraint, isthis)
 
-		return DB.execute("SELECT #{column} FROM #{table} WHERE #{constraint} = \"#{isthis.to_s}\"")
+		return DB.execute("SELECT #{column} FROM #{table} WHERE #{constraint} = \"#{isthis}\"")
 
 	end
 

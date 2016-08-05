@@ -22,7 +22,7 @@ class EventsSQLTest < Minitest::Test
 
 		assert_equal EventsSQL.select_from_where("EVENTABV", "EVENTS", "EVENTNAME", "1650 Freestyle")[0]['EVENTABV'], "1650F"
 		refute_equal EventsSQL.select_from_where("EVENTABV", "EVENTS", "EVENTNAME", "200 Backstroke")[0]['EVENTABV'], "200BU"
-		binding.pry
+
 	end
 
 # 	def test_add_event

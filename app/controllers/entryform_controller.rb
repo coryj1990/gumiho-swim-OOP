@@ -59,6 +59,12 @@ MyApp.post "/swimmers/new" do
 	address = params['Address']
 	writetoaddr(college, address)
 
-	# Sends admin back to the entryform page
 	erb :"form/entryform"
 end
+
+
+
+
+
+
+

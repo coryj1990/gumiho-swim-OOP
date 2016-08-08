@@ -34,7 +34,7 @@ MyApp.post "/swimmers/new" do
 	stuffs500FR = params['500FR']
 	stuffs100BU = params['100BU']
 	stuffs400IM = params['400IM']
-
+	binding.pry
 	x = Entryformobject.new
 	x.setuID
 	x.setevent(stuffs1650F, stuffs200FR, stuffs100BA, stuffs100BR, stuffs200BU, stuffs50FRE, stuffs100FR, stuffs200BA, stuffs200BR, stuffs500FR, stuffs100BU, stuffs400IM)

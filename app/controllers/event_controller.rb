@@ -19,6 +19,8 @@ end
 
 MyApp.get "/events/200butterfly" do
 	@current_page = "200 Butterfly"
+	@theabv = EventsSQL.select_from_where("EVENTABV", "EVENTS", "EVENTNAME", @current_page)[0]['EVENTABV']
+	@fromDB = EntryformSQL.get_athletes_by_event(@theabv)
 
 	y = Eventpageobject.new
 	@peoplein200BU = y.peopleinevent(@current_page, "entrants.txt")
@@ -31,6 +33,8 @@ end
 
 MyApp.get "/events/200freestyle" do
 	@current_page = "200 Freestyle"
+	@theabv = EventsSQL.select_from_where("EVENTABV", "EVENTS", "EVENTNAME", @current_page)[0]['EVENTABV']
+	@fromDB = EntryformSQL.get_athletes_by_event(@theabv)
 
 	y = Eventpageobject.new
 	@peoplein200FR = y.peopleinevent(@current_page, "entrants.txt")
@@ -43,6 +47,8 @@ end
 
 MyApp.get "/events/100backstroke" do
 	@current_page = "100 Backstroke"
+	@theabv = EventsSQL.select_from_where("EVENTABV", "EVENTS", "EVENTNAME", @current_page)[0]['EVENTABV']
+	@fromDB = EntryformSQL.get_athletes_by_event(@theabv)
 
 	y = Eventpageobject.new
 	@peoplein100BA = y.peopleinevent(@current_page, "entrants.txt")
@@ -55,6 +61,8 @@ end
 
 MyApp.get "/events/100breaststroke" do
 	@current_page = "100 Breaststroke"
+	@theabv = EventsSQL.select_from_where("EVENTABV", "EVENTS", "EVENTNAME", @current_page)[0]['EVENTABV']
+	@fromDB = EntryformSQL.get_athletes_by_event(@theabv)
 
 	y = Eventpageobject.new
 	@peoplein100BR = y.peopleinevent(@current_page, "entrants.txt")
@@ -67,6 +75,8 @@ end
 
 MyApp.get "/events/50freestyle" do
 	@current_page = "50 Freestyle"
+	@theabv = EventsSQL.select_from_where("EVENTABV", "EVENTS", "EVENTNAME", @current_page)[0]['EVENTABV']
+	@fromDB = EntryformSQL.get_athletes_by_event(@theabv)
 
 	y = Eventpageobject.new
 	@peoplein50FRE = y.peopleinevent(@current_page, "entrants.txt")
@@ -79,6 +89,8 @@ end
 
 MyApp.get "/events/100freestyle" do
 	@current_page = "100 Freestyle"
+	@theabv = EventsSQL.select_from_where("EVENTABV", "EVENTS", "EVENTNAME", @current_page)[0]['EVENTABV']
+	@fromDB = EntryformSQL.get_athletes_by_event(@theabv)
 
 	y = Eventpageobject.new
 	@peoplein100FR = y.peopleinevent(@current_page, "entrants.txt")
@@ -91,6 +103,8 @@ end
 
 MyApp.get "/events/200backstroke" do
 	@current_page = "200 Backstroke"
+	@theabv = EventsSQL.select_from_where("EVENTABV", "EVENTS", "EVENTNAME", @current_page)[0]['EVENTABV']
+	@fromDB = EntryformSQL.get_athletes_by_event(@theabv)
 
 	y = Eventpageobject.new
 	@peoplein200BA = y.peopleinevent(@current_page, "entrants.txt")
@@ -103,6 +117,8 @@ end
 
 MyApp.get "/events/200breaststroke" do
 	@current_page = "200 Breaststroke"
+	@theabv = EventsSQL.select_from_where("EVENTABV", "EVENTS", "EVENTNAME", @current_page)[0]['EVENTABV']
+	@fromDB = EntryformSQL.get_athletes_by_event(@theabv)
 
 	y = Eventpageobject.new
 	@peoplein200BR = y.peopleinevent(@current_page, "entrants.txt")
@@ -115,6 +131,8 @@ end
 
 MyApp.get "/events/500freestyle" do
 	@current_page = "500 Freestyle"
+	@theabv = EventsSQL.select_from_where("EVENTABV", "EVENTS", "EVENTNAME", @current_page)[0]['EVENTABV']
+	@fromDB = EntryformSQL.get_athletes_by_event(@theabv)
 
 	y = Eventpageobject.new
 	@peoplein500FR = y.peopleinevent(@current_page, "entrants.txt")
@@ -127,6 +145,8 @@ end
 
 MyApp.get "/events/100butterfly" do
 	@current_page = "100 Butterfly"
+	@theabv = EventsSQL.select_from_where("EVENTABV", "EVENTS", "EVENTNAME", @current_page)[0]['EVENTABV']
+	@fromDB = EntryformSQL.get_athletes_by_event(@theabv)
 
 	y = Eventpageobject.new
 	@peoplein100BU = y.peopleinevent(@current_page, "entrants.txt")
@@ -139,6 +159,8 @@ end
 
 MyApp.get "/events/400medley" do
 	@current_page = "400 Individual Medley"
+	@theabv = EventsSQL.select_from_where("EVENTABV", "EVENTS", "EVENTNAME", @current_page)[0]['EVENTABV']
+	@fromDB = EntryformSQL.get_athletes_by_event(@theabv)
 
 	y = Eventpageobject.new
 	@peoplein400IM = y.peopleinevent(@current_page, "entrants.txt")
@@ -155,6 +177,7 @@ MyApp.post "/event/times" do
 	theparams = params
 	y = Eventpageobject.new
 	y.paramstotimes(theparams)
+	EventsSQL.paramstoDB(theparams)
 
 erb :"home"
 end

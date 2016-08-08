@@ -172,12 +172,12 @@ MyApp.get "/events/400medley" do
 end
 
 MyApp.post "/event/times" do
-
+	binding.pry
 	# params = {"event"=>"100 Backstroke", "14\r\n-time"=>"5", "16\r\n-time"=>"10", "Submit"=>"Submit"}	
-	theparams = params
-	y = Eventpageobject.new
-	y.paramstotimes(theparams)
-	EventsSQL.paramstoDB(theparams)
+	# theparams = params
+	# y = Eventpageobject.new
+	# y.paramstotimes(theparams)
+	EventsSQL.paramstoDB(params)
 
 erb :"home"
 end

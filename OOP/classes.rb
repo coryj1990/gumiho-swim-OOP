@@ -151,7 +151,7 @@ class Entryformobject
 # entrants.txt. they are written into the flatstorage as 4 lines
 # as ID, athlete name, events signed up for, and college.
 	def writetoentrants(uID, athlete, event, college, address)
-	  newish_file = File.open("entrants.txt", "a"){}
+	  newish_file = File.open("entrants.txt", "a")
 	  newish_file.puts uID 
 	  newish_file.puts athlete 
 	  newish_file.puts event

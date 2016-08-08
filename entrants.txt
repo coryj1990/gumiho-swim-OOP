@@ -103,3 +103,8 @@ Hannah Banana
 100 Backstroke, 100 Breaststroke, 200 Butterfly, 100 Freestyle, 100 Butterfly
 UNO
 Omaha, NE
+22
+Test man
+1650 Freestyle, 200 Freestyle, 100 Backstroke, 100 Breaststroke, 200 Butterfly, 50 Freestyle, 100 Freestyle, 200 Backstroke, 200 Breaststroke, 500 Freestyle, 100 Butterfly, 400 Individual Medley
+Test U
+Eugene, OR
